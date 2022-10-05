@@ -28,8 +28,9 @@ Configuration on Odoo
 
 #. :ref:`Navigate to the payment provider AsiaPay <payment_providers/add_new>` and change its state
    to :guilabel:`Enabled`.
-#. | In the :guilabel:`Credentials` tab, fill the :guilabel:`Merchant ID`, :guilabel:`Currency`, and
-     :guilabel:`Secure Hash Secret` with the values you saved at the step
+#. | In the :guilabel:`Credentials` tab, fill the :guilabel:`Merchant ID` and
+     :guilabel:`Secure Hash Secret`, and the :guilabel:`Currency` in the :guilabel:`Configuration`
+     tab  with the values you saved at the step
      :ref:`payment_providers/asiapay/configure_dashboard`.
    | By default, the payment provider AsiaPay is configured to verify the secret hash with the hash
      function `SHA1`. If a different function is :ref:`set on your account
