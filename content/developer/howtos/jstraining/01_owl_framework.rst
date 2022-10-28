@@ -1,21 +1,21 @@
 .. _howto/jstraining/01_owl_framework:
 
-===========================
-Chapter 1: Owl Framework 🦉
-===========================
+===============================
+Chapter 1: The Owl Framework 🦉
+===============================
 
-Components are the basic UI building blocks in Odoo. Odoo components are made with the
-`Owl framework <https://github.com/odoo/owl>`_, which is a component system custom
-made for Odoo.
+Components are the basic building blocks of user interface in Odoo. Odoo components are made with
+the `Owl framework <https://github.com/odoo/owl>`_, which is tailor-made component system for Odoo.
 
-Let us take some time to get used to Owl itself. The exercises in this section may be artificial,
-but their purpose is to understand and practice the basic notions of Owl quickly.
+Let us take some time to get used to Owl itself. The exercises in this section may not be realistic,
+but their purpose is to quickly understand and practice the basics of Owl.
 
-Here is an overview of what we will do in this chapter:
+Here is an overview of what we are going to achieve in this chapter:
 
-.. image:: 01_owl_framework/overview_01.png
+.. image:: 01_owl_framework/overview.png
+   :scale: 120%
    :align: center
-   :alt: Overview of chapter 01
+   :alt: Overview of chapter 1.
 
 A Counter Component
 ===================
