@@ -16,7 +16,7 @@ the Awesome T-Shirt website, and give the url for any image that he wants. He al
 basic informations, such as the desired size, and amount of t-shirts. Once he confirms his order,
 and once the payment is validated, the system will create a task in our project application.
 
-The Awesome T-shirt big boss, Bafien Ckinpaers, is not happy with our implementation.
+The Awesome T-shirt big boss, Bafien Carpink, is not happy with our implementation.
 He believe that by micromanaging more, he will be able to extract more revenue from his employees.
 As the IT staff for Awesome T-shirt, we are tasked with improving the system. Various independant tasks need to be done.
 
