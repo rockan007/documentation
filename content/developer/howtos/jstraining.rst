@@ -48,9 +48,9 @@ Started: Development environment setup <rdtraining/02_setup>` tutorial.
 
 The last things to do are:
 
-- Clone the `JS Training respository <https://github.com/ged-odoo/odoo-js-training-public>`_.
-- Add the modules to your addons path.
-- Prepare a new database with awesome_tshirt installed.
+- Clone the `JS Training repository <https://github.com/ged-odoo/odoo-js-training-public>`_.
+- Add the cloned repository to the :option:`--addons-path <odoo-bin --addons-path>`.
+- Start a new Odoo database and install the module `awesome_tshirt`.
 
 You are now ready to take the training. Let's get started!
 
