@@ -10,4 +10,5 @@ Productivity
     productivity/discuss
     productivity/iot
     productivity/mail_plugins
+    productivity/spreadsheet
     productivity/studio
