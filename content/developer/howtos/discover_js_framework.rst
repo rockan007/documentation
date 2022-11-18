@@ -1,8 +1,8 @@
 :show-content:
 
-=====================================
+=========================
 Discover the JS Framework
-=====================================
+=========================
 
 .. toctree::
     :titlesonly:
@@ -44,6 +44,29 @@ The last things to do are:
 - Clone the `JS Training repository <https://github.com/ged-odoo/odoo-js-training-public>`_.
 - Add the cloned repository to the :option:`--addons-path <odoo-bin --addons-path>`.
 - Start a new Odoo database and install the module `owl_playground`.
+
+Architecture
+============
+Most of the time, javascript (and other assets) code should be structured like this:
+
+.. code-block:: bash
+
+    module
+    └── static
+        ├── src
+        │   ├── notifications
+        │   │   ├── notification.js
+        │   │   ├── notification.scss
+        │   │   ├── notification.xml
+        │   │   └── notification_service.js
+        │   ├── some_component.js
+        │   └── some_component.xml
+        └── tests
+            ├── helpers.js
+            └── notification_tests.js
+
+The different modules of the training follow this hierarchy. You will find for example the first
+file to be modified in chapter 1 in ``owl_playground/static/src/playground.js``.
 
 You are now ready to take the training. Let's get started!
 

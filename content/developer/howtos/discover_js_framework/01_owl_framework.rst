@@ -1,11 +1,42 @@
 .. _howto/jstraining/01_owl_framework:
 
 ===============================
-Chapter 1: The Owl Framework 🦉
+Chapter 1: Components
 ===============================
 
-Components are the basic building blocks of user interface in Odoo. Odoo components are made with
-the `Owl framework <https://github.com/odoo/owl>`_, which is tailor-made component system for Odoo.
+`Components <https://github.com/odoo/owl/blob/master/doc/reference/component.md>`_ are the basic
+building blocks of user interface in Odoo.
+
+Odoo components are made with the `Owl framework <https://github.com/odoo/owl>`_, which is
+tailor-made component system for Odoo. It is a small class which represents some part of the user
+interface.
+
+OWL components are defined by subclassing the Component class. For example, here is how a Counter
+component could be implemented in Odoo:
+
+.. example::
+    .. code-block:: js
+   
+       const { Component, xml, useState } = owl;
+
+        class Counter extends Component {
+            static template = "my_module.Counter";
+
+            state = useState({ value: 0 });
+
+            increment() {
+                this.state.value++;
+            }
+        }
+    
+    .. code-block:: xml
+
+        <templates xml:space="preserve">
+            <t t-name="my_module.Counter" owl="1">
+                <p>Counter: <t t-esc="state.value"/></p>
+                <button class="btn btn-primary" t-on-click="increment">Increment</button>
+            </t>
+        </templates>
 
 Let us take some time to get used to Owl itself. The exercises in this section may not be realistic,
 but their purpose is to quickly understand and practice the basics of Owl.
@@ -17,43 +48,44 @@ Here is an overview of what we are going to achieve in this chapter:
    :align: center
    :alt: Overview of chapter 1.
 
-A Counter Component
-===================
+.. A Counter Component
+.. ===================
 
-Let us see first how to create a sub component
+.. Let us see first how to create a sub component
 
-- Extract the counter code from the ``AwesomeDashboard`` component into a new ``Counter`` component.
-- You can do it in the same file first, but once it's done, update your code to move the ``Counter``
-  in its own file.
-- Make sure the template is in its own file, with the same name.
+.. - Extract the counter code from the ``AwesomeDashboard`` component into a new ``Counter`` component.
+.. - You can do it in the same file first, but once it's done, update your code to move the ``Counter``
+..   in its own file.
+.. - Make sure the template is in its own file, with the same name.
 
-.. warning:: Don't forget the ``/** @odoo-module **/`` in your javascript files, more information
-    on this can be found :ref:`here <frontend/modules/native_js>`.
+.. .. warning:: Don't forget the ``/** @odoo-module **/`` in your javascript files, more information
+..     on this can be found :ref:`here <frontend/modules/native_js>`.
 
-.. note:: References:
+.. .. note:: References:
 
-    - `owl: github repository <https://github.com/odoo/owl>`_
-    - `owl: documentation <https://github.com/odoo/owl#documentation>`_
-    - `owl: using sub components <https://github.com/odoo/owl/blob/master/doc/reference/component.md#sub-components>`_
-    - :ref:`odoo: assets documentation <reference/assets>`
+..     - `owl: github repository <https://github.com/odoo/owl>`_
+..     - `owl: documentation <https://github.com/odoo/owl#documentation>`_
+..     - `owl: using sub components <https://github.com/odoo/owl/blob/master/doc/reference/component.md#sub-components>`_
+..     - :ref:`odoo: assets documentation <reference/assets>`
     
 
-.. spoiler:: Preview
+.. .. spoiler:: Preview
 
-    .. image:: 01_owl_framework/counter.png
-       :align: center
-       :alt: A counter component
+..     .. image:: 01_owl_framework/counter.png
+..        :align: center
+..        :alt: A counter component
 
 
-.. spoiler:: Solution
+.. .. spoiler:: Solution
 
-    - `Solution of the exercice can be found here <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
+..     - `Solution of the exercice can be found here <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
 
-A Todo Component
+A todo component
 ================
 
-We will modify the AwesomeDashboard component to keep track of a list of todos. This will be done
-incrementally in multiple exercises, that will introduce various concepts.
+We will create new components in ``owl_playground/static/src/`` to keep
+track of a list of todos. This will be done incrementally in multiple exercises, that will
+introduce various concepts.
 
 
 First, let's create a ``Todo`` component that display a task, which is described by an
@@ -63,12 +95,13 @@ id (number), a description (string) and a status done (boolean). For example:
 
         { id: 3, description: "buy milk", done: false }
 
-- Create a ``Todo`` component that receive a ``todo`` in props, and display it: it should show
-  something like ``3. buy milk``
+- Create a ``Todo`` component that receive a ``todo`` in 
+  `props <https://github.com/odoo/owl/blob/master/doc/reference/props.md>`_, and display it:
+  it should show something like ``3. buy milk``
 - Add the bootstrap classes ``text-muted`` and ``text-decoration-line-through`` on the task
   if it is done
-- modify ``AwesomeDashboard`` to display a ``Todo component``, with some hardcoded props to
-  test it first. For example
+- modify ``owl_playground/static/src/playground.js`` and ``owl_playground/static/src/playground.xml``
+  to display your new ``Todo`` component, with some hardcoded props to test it first. For example
 
     .. code-block:: javascript
 
