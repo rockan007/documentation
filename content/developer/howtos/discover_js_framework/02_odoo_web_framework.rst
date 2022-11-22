@@ -4,9 +4,8 @@
 Chapter 2: Odoo web framework
 ==============================
 
-We will now learn to use the Odoo javascript framework. In this module, we will
-improve our Awesome dashboard. This will be a good opportunity to discover many useful features.
-
+We will now learn to use the Odoo javascript framework. In this module, we will improve our Awesome
+dashboard. This will be a good opportunity to discover many useful features.
 
 .. image:: 02_odoo_web_framework/overview_02.png
    :align: center
@@ -16,20 +15,20 @@ improve our Awesome dashboard. This will be a good opportunity to discover many 
 A new Layout
 ================
 
-Most screens in the Odoo web client uses a common layout: a control panel on top,
-with some buttons, and a main content zone just below. This is done using a
-``Layout`` component, available in ``@web/search/layout``.
+Most screens in the Odoo web client uses a common layout: a control panel on top, with some
+buttons, and a main content zone just below. This is done using a ``Layout`` component,
+available in ``@web/search/layout``.
 
 - Update the ``AwesomeDashboard`` component to use the ``Layout`` component
 
 .. note::
 
-   The ``Layout`` component has been primarily designed with the current
-   views in mind. It is kind of awkward to use in another context, so it is highly
-   suggested to have a look at how it is done in the link provided in resources.
+   The ``Layout`` component has been primarily designed with the current views in mind. It is kind
+   of awkward to use in another context, so it is highly suggested to have a look at how it is done
+   in the link provided in resources.
 
 .. spoiler:: Preview
-      
+
    .. image:: 02_odoo_web_framework/newLayout.png
       :align: center
       :alt: new Layout
@@ -44,8 +43,8 @@ with some buttons, and a main content zone just below. This is done using a
 Add some buttons for quick navigation
 =========================================
 
-Bafien Ckinpaers want buttons for easy access to common views in Odoo. Let us
-add three buttons in the control panel bottom left zone:
+Bafien Ckinpaers want buttons for easy access to common views in Odoo. Let us add three buttons in
+the control panel bottom left zone:
 
 
 - A button ``Customers`` , which opens a kanban view with all customers (this action already exists, so you should use its xml id)
@@ -65,14 +64,96 @@ add three buttons in the control panel bottom left zone:
    - `data: action displaying res.partner <https://github.com/odoo/odoo/blob/16d55910c151daafa00338c26298d28463254a55/odoo/addons/base/views/res_partner_views.xml#L511>`_
    - `code: action service <https://github.com/odoo/odoo/blob/16d55910c151daafa00338c26298d28463254a55/addons/web/static/src/webclient/actions/action_service.js#L1456>`_
 
+Network Requests
+================
+
+A web app such as the Odoo web client would not be very useful if it was unable to talk to the
+server. Loading data and calling model methods from the browser is a very common need.
+
+Roughly speaking, there are two different kind of requests:
+
+- calling a controller (an arbitrary route)
+- calling a method on a model (`/web/dataset/call_kw/some_model/some_method`). This
+  will call the python code from the corresponding method, and return the result.
+
+Calling a method on a model (orm service)
+-----------------------------------------
+
+Let us first see the most common request: calling a method on a model. This is usually what we need
+to do.
+
+There is a service dedicated to do just that: `orm_service`, located in `core/orm_service.js`.
+It provides a way to call common model methods, as well as a generic `call` method:
+
+.. example::
+
+   .. code-block:: js
+
+      setup() {
+         this.orm = useService("orm");
+         onWillStart(async () => {
+            // will read the fields 'id' and 'descr' from the record with id=3 of my.model
+            const data = await this.orm.read("my.model", [3], ["id", "descr"]);
+            // ...
+         });
+      }
+
+
+Here is a list of its various methods:
+
+- `create(model, records, kwargs)`
+- `nameGet(model, ids, kwargs)`
+- `read(model, ids, fields, kwargs)`
+- `readGroup(model, domain, fields, groupby, kwargs)`
+- `search(model, domain, kwargs)`
+- `searchRead(model, domain, fields, kwargs)`
+- `searchCount(model, domain, kwargs)`
+- `unlink(model, ids, kwargs)`
+- `webReadGroup(model, domain, fields, groupby, kwargs)`
+- `webSearchRead(model, domain, fields, kwargs)`
+- `write(model, ids, data, kwargs)`
+
+Also, in case one needs to call an arbitrary method on a model, there is:
+
+- `call(model, method, args, kwargs)`
+
+Note that the specific methods should be preferred, since they can perform some light validation on
+the shape of their arguments.
+
+Calling a controller (rpc service)
+----------------------------------
+
+Whenever we need to call a specific controller, we need to use the (low level) `rpc` service. It
+only exports a single function that perform the request: `rpc(route, params, settings)`
+
+Here is a short explanation on the various arguments:
+
+- `route` is the target route, as a string. For example `/myroute/`
+- `params`, optional, is an object that contains all data that will be given to the controller
+- `settings`, optional, for some advance control on the request (make it silent, or
+  using a specific xhr instance)
+
+.. example::
+
+   For example, a basic request could look like this:
+
+   .. code-block:: js
+
+      setup() {
+         this.rpc = useService("rpc");
+         onWillStart(async () => {
+            const result = await this.rpc("/my/controller", {a: 1, b: 2});
+            // ...
+         });
+      }
+
+
 Call the server, add some statistics
 ========================================
 
-Let's improve the dashboard by adding a few cards (see the ``Card`` component
-made in the Owl training) containing a few statistics. There is a route
-``/awesome_tshirt/statistics`` that will perform some computations and return an
-object containing some useful informations.
-
+Let's improve the dashboard by adding a few cards (see the ``Card`` component made in the Owl
+training) containing a few statistics. There is a route ``/awesome_tshirt/statistics`` that will
+perform some computations and return an object containing some useful informations.
 
 - Change ``Dashboard`` so that it uses the ``rpc`` service
 - Call the statistics route in the ``onWillStart`` hook
@@ -97,15 +178,83 @@ object containing some useful informations.
    - `code: rpc service <https://github.com/odoo/odoo/blob/master/addons/web/static/src/core/network/rpc_service.js>`_
    - `example: calling a route in willStart <https://github.com/odoo/odoo/blob/16d55910c151daafa00338c26298d28463254a55/addons/lunch/static/src/views/search_model.js#L21>`_
 
+Services
+========
+
+In practice, every component (except the root component) may be destroyed at any time and replaced
+(or not) with another component. This means that each component internal state is not persistent.
+This is fine in many cases, but there certainly are situations where we want to keep some data
+around. For example, all discuss messages, or the current menu.
+
+Also, it may happen that we need to write some code that is not a component. Maybe something that
+process all barcodes, or that manages the user configuration (context, ...).
+
+The Odoo framework defines the notion of :ref:`services <frontend/services>`, which is a persistent
+piece of code that exports state and/or functions. Each service can depend on other services, and
+components can import a service.
+
+The following example registers a simple service that displays a notification every 5 seconds:
+
+.. code-block:: js
+
+   import { registry } from "@web/core/registry";
+   const myService = {
+      dependencies: ["notification"],
+      start(env, { notification }) {
+         let counter = 1;
+         setInterval(() => {
+            notification.add(`Tick Tock ${counter++}`);
+         }, 5000);
+      },
+   };
+   registry.category("services").add("myService", myService);
+
+
+Note that services are registered in a `registry`. See below for more on that.
+
+Services can be accessed by any component. Imagine that we have a service to
+maintain some shared state:
+
+.. code-block:: js
+
+   import { registry } from "@web/core/registry";
+   const sharedStateService = {
+      start(env) {
+         let state = {};
+         return {
+            getValue(key) {
+               return state[key];
+            },
+            setValue(key, value) {
+               state[key] = value;
+            },
+         };
+      },
+   };
+   registry.category("services").add("shared_state", sharedStateService);
+
+
+Then, any component can do this:
+
+
+.. code-block:: js
+
+   import { useService } from "@web/core/utils/hooks";
+   setup() {
+      this.sharedState = useService("shared_state");
+      const value = this.sharedState.getValue("somekey");
+      // do something with value
+   }
+
+
 Cache network calls, create a service
 =========================================
 
-If you open your browser dev tools, in the network tabs, you will probably see
-that the call to ``/awesome_tshirt/statistics`` is done every time the client
-action is displayed. This is because the ``onWillStart`` hook is called each
-time the ``Dashboard`` component is mounted. But in this case, we probably would
-prefer to do it only the first time, so we actually need to maintain some state
-outside of the ``Dashboard`` component. This is a nice use case for a service!
+If you open your browser dev tools, in the network tabs, you will probably see that the call to
+``/awesome_tshirt/statistics`` is done every time the client action is displayed. This is because
+the ``onWillStart`` hook is called each time the ``Dashboard`` component is mounted. But in this
+case, we probably would prefer to do it only the first time, so we actually need to maintain some
+state outside of the ``Dashboard`` component. This is a nice use case for a service!
 
 
 - Implements a new ``awesome_tshirt.statistics`` service
@@ -124,14 +273,13 @@ outside of the ``Dashboard`` component. This is a nice use case for a service!
 Display a pie chart
 =======================
 
-Everyone likes charts (!), so let us add a pie chart in our dashboard, which
-displays the proportions of t-shirts sold for each size: S/M/L/XL/XXL
+Everyone likes charts (!), so let us add a pie chart in our dashboard, which displays the
+proportions of t-shirts sold for each size: S/M/L/XL/XXL
 
-For this exercise, we will use Chart.js. It is the chart library used by the
-graph view. However, it is not loaded by default, so we will need to either add
-it to our assets bundle, or lazy load it (usually better, since our users will not have
-to load the chartjs code every time if they don't need it).
-
+For this exercise, we will use Chart.js. It is the chart library used by the graph view. However,
+it is not loaded by default, so we will need to either add it to our assets bundle, or lazy load it
+(usually better, since our users will not have to load the chartjs code every time if they don't
+need it).
 
 - Load chartjs
 - In a ``Card`` (from previous exercises), display a pie chart in the dashboard that displays the correct quantity for each
@@ -155,9 +303,7 @@ to load the chartjs code every time if they don't need it).
 Misc
 ========
 
-Here is a list of some small improvements you could try to do if you have the
-time:
-
+Here is a list of some small improvements you could try to do if you have the time:
 
 - Make sure your application can be translated (with ``env._t``\ )
 - Clicking on a section of the pie chart should open a list view of all orders

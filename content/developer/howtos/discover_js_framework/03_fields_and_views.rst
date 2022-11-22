@@ -8,20 +8,189 @@ Fields and views are among the most important concepts in the Odoo user interfac
 They are key to many important user interactions, and should therefore work
 perfectly.
 
+Fields
+======
+
+In the context of the javascript framework, fields are components specialized for
+visualizing/editing a specific field for a given record.
+
+For example, a (python) model may define a boolean field, which will be represented
+by a field component `BooleanField`.
+
+Usually, fields can display data in `readonly` or in `edit` mode. Also, they are
+often specific to a field type: `boolean`, `float`, `many2one`, ...
+
+Fields have to be registered in the `fields` registry. Once it's done, they can
+be used in some views (namely: `form`, `list`, `kanban`) by using the `widget`
+attribute:
+
+.. code-block:: xml
+
+    <field name="preview_moves" widget="account_resequence_widget"/>
+
+Note that fields may in some case be used outside the context of a view.
+
+Generic Field Component
+-----------------------
+
+Concrete fields are designed to be created by a generic component, `Field`.
+
+.. example::
+
+   .. code-block:: xml
+
+      <Field
+         name="field.name"
+         record="props.record"
+         type="field.widget"
+         readonly="true"
+         fieldInfo="props.fieldNodes[field.name]"/>
+
+
+This example show some of the props accepted by the `Field` component. Then, it will make sure it
+loads the correct component from the `fields` registry, prepare the base props, and create its
+child.
+
+.. note ::
+
+   The `Field` component is *dom less*: it only exists as a wrapper for the concrete
+   field instance.
+
+Here is what it look like for the form view:
+
+.. image:: 03_fields_and_views/form_renderer_fields.svg
+   :align: center
+   :alt: Create an invoice.
+   :width: 50%
+   :class: o-no-modal
+.. ```mermaid
+.. graph TD
+..     A[FormRenderer]
+..     B[Field] --- C[BooleanField]
+..     D[Field] --- E[Many2OneField]
+
+..     A --- B
+..     A --- D
+..     A --- F[...]
+
+.. ```
+
+Defining a field component
+--------------------------
+
+A field component is basically just a component registered in the `fields` registry.
+It may define some additional static keys (metadata), such as `displayName` or `supportedTypes`,
+and the most important one: `extractProps`, which prepare the base props received
+by the `CharField`.
+
+Let us discuss a (simplified) implementation of a `CharField`:
+
+First, here is the template:
+
+.. code-block:: xml
+
+    <t t-name="web.CharField" owl="1">
+        <t t-if="props.readonly">
+            <span t-esc="formattedValue" />
+        </t>
+        <t t-else="">
+            <input
+                class="o_input"
+                t-att-type="props.isPassword ? 'password' : 'text'"
+                t-att-placeholder="props.placeholder"
+                t-on-change="updateValue"
+            />
+        </t>
+    </t>
+
+It features a readonly mode, an edit mode, which is an input with a few attributes.
+Now, here is the code:
+
+.. code-block:: js
+
+   export class CharField extends Component {
+      get formattedValue() {
+         return formatChar(this.props.value, { isPassword: this.props.isPassword });
+      }
+
+      updateValue(ev) {
+         let value = ev.target.value;
+         if (this.props.shouldTrim) {
+            value = value.trim();
+         }
+         this.props.update(value);
+      }
+   }
+
+   CharField.template = "web.CharField";
+   CharField.displayName = _lt("Text");
+   CharField.supportedTypes = ["char"];
+
+   CharField.extractProps = ({ attrs, field }) => {
+      return {
+         shouldTrim: field.trim && !archParseBoolean(attrs.password),
+         maxLength: field.size,
+         isPassword: archParseBoolean(attrs.password),
+         placeholder: attrs.placeholder,
+      };
+   };
+
+   registry.category("fields").add("char", CharField);
+
+
+There are a few important things to notice:
+
+- the `CharField` receives its (raw) value in props. It needs to format it before displaying it
+- it receives a `update` function in its props, which is used by the field to notify
+  the owner of the state that the value of this field has been changed. Note that
+  the field does not (and should not) maintain a local state with its value. Whenever
+  the change has been applied, it will come back (possibly after an onchange) by the
+  way of the props.
+- it defines an `extractProps` function. This is a step that translates generic
+  standard props, specific to a view, to specialized props, useful to the component.
+  This allows the component to have a better API, and may make it so that it is
+  reusable.
+
+Registries
+==========
+
+:ref:`Registries <frontend/registries>` are central to the code architecture: they maintain a
+collection of key/value pairs, that are used in many places to read some information. This is
+the main way to extend or customize the web client.
+
+For example, a common usecase is to register a field or a view in a registry, then add the
+information in a view arch xml, so the web client will know what it should use.
+
+.. example::
+
+   .. code-block:: js
+
+      registry.category("fields").add("char", CharField);
+
+But fields and views are only two usecases. There are many situations where we decides to go with
+a registry, because it makes it easy to extend. For example,
+
+- service registry
+- field registry
+- user menu registry
+- effect registry
+- systray registry
+- ...
+
+
 An ``image_preview`` field
 ==============================
 
-Each new order on the website will be created as an ``awesome_tshirt.order``. This
-model has a ``image_url`` field (of type char), which is currently only visible as
-a string. We want to be able to see it in the form view.
+Each new order on the website will be created as an ``awesome_tshirt.order``. This model has a
+``image_url`` field (of type char), which is currently only visible as a string. We want to be
+able to see it in the form view.
 
-For this task, we need to create a new field component ``image_preview``. This
-component is specified as follows:
+For this task, we need to create a new field component ``image_preview``. This component is
+specified as follows:
 
-In readonly mode, it is only an image tag with the correct src if field is set.
-In edit mode, it also behaves like classical char fields (you can use the ``CharField``
-in your template by passing it props): an ``input`` should be displayed with the
-text value of the field, so it can be edited.
+In readonly mode, it is only an image tag with the correct src if field is set. In edit mode, it
+also behaves like classical char fields (you can use the ``CharField`` in your template by passing
+it props): an ``input`` should be displayed with the text value of the field, so it can be edited.
 
 
 - Register your field in the proper registry
@@ -46,10 +215,9 @@ text value of the field, so it can be edited.
 Improving the image_preview field
 =====================================
 
-We want to improve the widget of the previous task to help the staff recognize
-orders for which some action should be done. 
-In particular, we want to display a warning 'MISSING TSHIRT DESIGN' in red, if there is no image url
-specified on the order.
+We want to improve the widget of the previous task to help the staff recognize orders for which
+some action should be done. In particular, we want to display a warning 'MISSING TSHIRT DESIGN' in
+red, if there is no image url specified on the order.
 
 .. spoiler:: Preview
 
@@ -62,15 +230,13 @@ Customizing a field component
 
 Let's see how to use inheritance to extend an existing component.
 
-There is a ``is_late``\ , readonly, boolean field on the task model. That would be
-a useful information to see on the list/kanban/view. Then, let us say that
-we want to add a red word ``Late!`` next to it whenever it is set to true.
-
+There is a ``is_late``\ , readonly, boolean field on the task model. That would be a useful
+information to see on the list/kanban/view. Then, let us say that we want to add a red word
+``Late!`` next to it whenever it is set to true.
 
 - Create a new field ``late_order_boolean`` inheriting from ``BooleanField``
 - Use it in the list/kanban/form view
 - Modify it to add a red ``Late`` next to it, as requested
-
 
 .. spoiler:: Preview
 
@@ -88,14 +254,11 @@ we want to add a red word ``Late!`` next to it whenever it is set to true.
 Message for some customers
 ==============================
 
-Odoo form views support a ``widget`` api, which is like a field, but more generic.
-It is useful to insert arbitrary components in the form view. Let us see how we
-can use it.
+Odoo form views support a ``widget`` api, which is like a field, but more generic. It is useful to
+insert arbitrary components in the form view. Let us see how we can use it.
 
-For a super efficient workflow, we would like to display a message/warning box
-with some information in the form view, with specific messages depending on some
-conditions:
-
+For a super efficient workflow, we would like to display a message/warning box with some
+information in the form view, with specific messages depending on some conditions:
 
 - If the image_url field is not set, it should display "No image"
 - If the amount of the order is higher than 100 euros, it should display "Add promotional material"
@@ -116,11 +279,10 @@ conditions:
 Use ``markup``
 ==================
 
-Let's see how we can display raw html in a template. Before, there was a ``t-raw``
-directive that would just output anything as html. This was unsafe, and has been
-replaced by a ``t-out`` directive, that acts like a ``t-esc`` unless the data has
-been marked explicitely with a ``markup`` function.
-
+Let's see how we can display raw html in a template. Before, there was a ``t-raw`` directive that
+would just output anything as html. This was unsafe, and has been replaced by a ``t-out``
+directive, that acts like a ``t-esc`` unless the data has been marked explicitely with a ``markup``
+function.
 
 - Modify the previous exercise to put the ``image`` and ``material`` words in bold
 - The warnings should be markuped, and the template should be modified to use ``t-out``
@@ -139,11 +301,165 @@ This is an example of a safe use of ``t-out``\ , since the string is static.
 
    - `owl: doc on t-out <https://github.com/odoo/owl/blob/master/doc/reference/templates.md#outputting-data>`_
 
+
+Views
+=====
+
+Views are among the most important components in Odoo: they allow users to interact with their
+data. Let us discuss how Odoo views are designed.
+
+The power of Odoo views is that they declare how a particular screen should work, with a xml
+document (usually named `arch`, short for `architecture`). This description can be
+extended/modified by xpaths serverside. Then the browser will load that document, parse it (fancy
+word to say that it will extract the useful information), then represent the data accordingly.
+
+The `arch` document is view specific. For example, here is how a `graph` view or a `calendar` view
+could be defined:
+
+.. code-block:: xml
+
+   <graph string="Invoices Analysis" type="line" sample="1">
+         <field name="product_categ_id"/>
+         <field name="price_subtotal" type="measure"/>
+   </graph>
+
+   <calendar string="Leads Generation" create="0" mode="month" date_start="activity_date_deadline" color="user_id" hide_time="true" event_limit="5">
+      <field name="expected_revenue"/>
+      <field name="partner_id" avatar_field="avatar_128"/>
+      <field name="user_id" filters="1" invisible="1"/>
+   </calendar>
+
+The generic `View` component
+----------------------------
+
+Most of the time, views are created with the help of a generic `View` component, located in
+`@web/views/view`. For example, here is what it look like for a kanban view:
+
+.. ```mermaid
+.. graph TD
+..     A[View]
+..     B[KanbanController]
+
+..     A ---|props| B
+.. ```
+.. image:: 03_fields_and_views/view_component.svg
+   :align: center
+   :alt: Create an invoice.
+   :width: 25%
+   :class: o-no-modal
+
+The `View` component is responsible for many tasks:
+
+- loading the view arch description from the server
+- loading the search view description, if necessary
+- loading the active filters
+- if there is a `js_class` attribute on the root node of the arch, get the
+  correct view from the view registry
+- creating a searchmodel (that manipulates the current domain/context/groupby/facets)
+
+Defining a javascript view
+--------------------------
+
+A view is defined in the view registry by an object with a few specific keys.
+
+- `type`: the (base) type of a view (so, for example, `form`, `list`, ...)
+- `display_name`: what shoul be displayed in tooltip in the view switcher
+- `icon`: what icon to use in the view switcher
+- `multiRecord`: if the view is supposed to manage 1 or a set of records
+- `Controller`: the most important information: the component that will be used
+  to render the view.
+
+Here is a minimal `Hello` view, which does not display anything:
+
+.. code-block:: js
+
+   /** @odoo-module */
+
+   import { registry } from "@web/core/registry";
+
+   export const helloView = {
+      type: "hello",
+      display_name: "Hello",
+      icon: "fa fa-picture-o",
+      multiRecord: true,
+      Controller: Component,
+   };
+
+   registry.category("views").add("hello", helloView);
+
+
+The Standard View Architecture
+------------------------------
+
+Most (or all?) odoo views share a common architecture:
+
+.. ```mermaid
+.. graph TD
+..     subgraph View description
+..         V(props function)
+..         G(generic props)
+..         X(arch parser)
+..         S(others ...)
+..         V --> X
+..         V --> S
+..         V --> G
+..     end
+..     A[Controller]
+..     L[Layout]
+..     B[Renderer]
+..     C[Model]
+
+..     V == compute props ==> A
+..     A --- L
+..     L --- B
+..     A --- C
+
+.. ```
+.. image:: 03_fields_and_views/view_architecture.svg
+   :align: center
+   :alt: Architecture of a view.
+   :width: 75%
+   :class: o-no-modal
+
+The view description can define a `props` function, which receive the standard props, and compute
+the base props of the concrete view. The `props` function is executed only once, and can be thought
+of as being some kind of factory. It is useful to parse the `arch` xml document, and to allow the
+view to be parameterized (for example, it can return a Renderer component that will be used as
+Renderer), but then it makes it easy to customize the specific renderer used by a sub view.
+
+Note that these props will be extended before being given to the Controller. In particular, the
+search props (domain/context/groupby) will be added.
+
+Then the root component, commonly called the `Controller`, coordinates everything. Basically, it
+uses the generic `Layout` component (to add a control panel), instantiates a `Model`, and uses a
+`Renderer` component in the `Layout` default slot. The `Model` is tasked with loading and updating
+data, and the `Renderer` is supposed to handle all rendering work, along with all user interactions.
+
+Parsing an arch
+~~~~~~~~~~~~~~~
+
+The process of parsing an arch (xml document) is usually done with a `ArchParser`, specific to each
+view. It inherits from a generic `XMLParser` class. For example, it could look like this:
+
+.. code-block:: js
+
+   import { XMLParser } from "@web/core/utils/xml";
+
+   export class GraphArchParser extends XMLParser {
+      parse(arch, fields) {
+         const result = {};
+         this.visitXML(arch, (node) => {
+            ...
+         });
+         return result;
+      }
+   }
+
 Add buttons in control panel
 ================================
 
-In practice, once the t-shirt order is printed, we need to print a label to put
-on the package. To help with that, let us add a button in the order form view control panel:
+In practice, once the t-shirt order is printed, we need to print a label to put on the package. To
+help with that, let us add a button in the order form view control panel:
 
 
 - Create a customized form view extending the web form view and register it as ``awesome_tshirt.order_form_view``
@@ -179,13 +495,11 @@ on the package. To help with that, let us add a button in the order form view co
 Auto reload the kanban view
 ===============================
 
-Bafien is upset: he wants to see the kanban view of the tshirt orders on his
-external monitor, but it needs to be up to date. He is tired of clicking on
-the ``refresh`` icon every 30s, so he tasked you to find a way to do it automatically.
+Bafien is upset: he wants to see the kanban view of the tshirt orders on his external monitor, but
+it needs to be up to date. He is tired of clicking on the ``refresh`` icon every 30s, so he tasked
+you to find a way to do it automatically.
 
-Just like the previous exercise, that kind of customization requires creating a
-new javascript view.
-
+Just like the previous exercise, that kind of customization requires creating a new javascript view.
 
 - Extend the kanban view/controller to reload its data every minute
 - Register it in the view registry, under the ``awesome_tshirt.autoreloadkanban``

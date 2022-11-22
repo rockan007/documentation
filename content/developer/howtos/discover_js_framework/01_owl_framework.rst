@@ -1,8 +1,8 @@
 .. _howto/jstraining/01_owl_framework:
 
-===============================
+=====================
 Chapter 1: Components
-===============================
+=====================
 
 `Components <https://github.com/odoo/owl/blob/master/doc/reference/component.md>`_ are the basic
 building blocks of user interface in Odoo.
@@ -16,7 +16,7 @@ component could be implemented in Odoo:
 
 .. example::
     .. code-block:: js
-   
+
        const { Component, xml, useState } = owl;
 
         class Counter extends Component {
@@ -28,7 +28,7 @@ component could be implemented in Odoo:
                 this.state.value++;
             }
         }
-    
+
     .. code-block:: xml
 
         <templates xml:space="preserve">
@@ -67,7 +67,7 @@ Here is an overview of what we are going to achieve in this chapter:
 ..     - `owl: documentation <https://github.com/odoo/owl#documentation>`_
 ..     - `owl: using sub components <https://github.com/odoo/owl/blob/master/doc/reference/component.md#sub-components>`_
 ..     - :ref:`odoo: assets documentation <reference/assets>`
-    
+
 
 .. .. spoiler:: Preview
 
@@ -95,7 +95,7 @@ id (number), a description (string) and a status done (boolean). For example:
 
         { id: 3, description: "buy milk", done: false }
 
-- Create a ``Todo`` component that receive a ``todo`` in 
+- Create a ``Todo`` component that receive a ``todo`` in
   `props <https://github.com/odoo/owl/blob/master/doc/reference/props.md>`_, and display it:
   it should show something like ``3. buy milk``
 - Add the bootstrap classes ``text-muted`` and ``text-decoration-line-through`` on the task
@@ -212,7 +212,7 @@ should update the UI. This can be fixed by wrapping the todo list in a `useState
 Focusing the input
 ==================
 
-Let's see how we can access the DOM with `t-ref <https://github.com/odoo/owl/blob/master/doc/reference/refs.md>`. 
+Let's see how we can access the DOM with `t-ref <https://github.com/odoo/owl/blob/master/doc/reference/refs.md>`_.
 
 - Focus the ``input`` from the previous exercise whenever the dashboard is mounted.
 - Bonus point: extract the code into a specialized hook ``useAutofocus``
@@ -305,7 +305,7 @@ useful to factorize common layout between different parts of the interface.
   the content (the default slot). For example, here is how one could use it:
 
     .. code-block:: html
-        
+
         <Card>
             <t t-set-slot="title">Card title</t>
             <p class="card-text">Some quick example text...</p>
