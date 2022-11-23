@@ -144,7 +144,7 @@ id (number), a description (string) and a status done (boolean). For example:
 
     - `Solution of the exercice can be found here (TODO) <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
 
-Props Validation
+Props validation
 ================
 
 The Todo component has an implicit API: it expects to receive in its props the description of a
@@ -165,7 +165,7 @@ It is a good practice to do that for every component.
 
     - `Solution of the exercice can be found here (TODO) <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
 
-A List of todos
+A list of todos
 ===============
 
 Now, let us display a list of todos instead of just one todo. For now, we can
@@ -295,7 +295,7 @@ The final touch is to let the user delete a todo.
 
     - `Solution of the exercice can be found here (TODO) <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
 
-Generic components with Slots
+Generic components with slots
 =============================
 
 Owl has a powerful slot system to allow you to write generic components. This is
