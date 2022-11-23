@@ -1,84 +1,101 @@
-.. _howto/jstraining/01_owl_framework:
+.. _howto/jstraining/01_components:
 
 =====================
 Chapter 1: Components
 =====================
 
-`Components <https://github.com/odoo/owl/blob/master/doc/reference/component.md>`_ are the basic
-building blocks of user interface in Odoo.
+This chapter introduces the `Owl framework <https://github.com/odoo/owl>`_, a tailor-made component
+system for Odoo. The main building blocks of OWL are `components
+<https://github.com/odoo/owl/blob/master/doc/reference/component.md>`_ and `templates
+<https://github.com/odoo/owl/blob/master/doc/reference/templates.md>`_.
 
-Odoo components are made with the `Owl framework <https://github.com/odoo/owl>`_, which is
-tailor-made component system for Odoo. It is a small class which represents some part of the user
-interface.
-
-OWL components are defined by subclassing the Component class. For example, here is how a Counter
-component could be implemented in Odoo:
+In Owl, every part of user interface is managed by a component: they hold the logic and define the
+templates that are used to render the user interface. In practice, a component is represented by a
+small JavaScript class subclassing the `Component` class.
 
 .. example::
-    .. code-block:: js
+   The `Counter` class implements a component that holds the internal state of a counter and defines
+   how it should be incremented.
 
-       const { Component, xml, useState } = owl;
+   .. code-block:: js
 
-        class Counter extends Component {
-            static template = "my_module.Counter";
+      const { Component, useState } = owl;
 
-            state = useState({ value: 0 });
+       class Counter extends Component {
+           static template = "my_module.Counter";
 
-            increment() {
-                this.state.value++;
-            }
-        }
+           state = useState({ value: 0 });
 
-    .. code-block:: xml
+           increment() {
+               this.state.value++;
+           }
+       }
 
-        <templates xml:space="preserve">
-            <t t-name="my_module.Counter" owl="1">
-                <p>Counter: <t t-esc="state.value"/></p>
-                <button class="btn btn-primary" t-on-click="increment">Increment</button>
-            </t>
-        </templates>
+   The `Counter` class specifies the name of the template to render. The template is written in XML
+   and defines a part of user interface.
 
-Let us take some time to get used to Owl itself. The exercises in this section may not be realistic,
-but their purpose is to quickly understand and practice the basics of Owl.
+   .. code-block:: xml
+
+       <templates xml:space="preserve">
+           <t t-name="my_module.Counter" owl="1">
+               <p>Counter: <t t-esc="state.value"/></p>
+               <button class="btn btn-primary" t-on-click="increment">Increment</button>
+           </t>
+       </templates>
+
+Let us take some time to get used to Owl itself. Below, you will find a series of exercises intended
+to quickly understand and practice the basics of Owl.
 
 Here is an overview of what we are going to achieve in this chapter:
 
-.. image:: 01_owl_framework/overview.png
+.. todo:: update screenshot
+
+.. image:: 01_components/overview.png
    :scale: 120%
    :align: center
    :alt: Overview of chapter 1.
 
-.. A Counter Component
-.. ===================
+Displaying a counter
+====================
 
-.. Let us see first how to create a sub component
+As a first exercise, let us implement a counter in the `Playground` component located in
+:file:`owl_playground/static/src/`.
 
-.. - Extract the counter code from the ``AwesomeDashboard`` component into a new ``Counter`` component.
-.. - You can do it in the same file first, but once it's done, update your code to move the ``Counter``
-..   in its own file.
-.. - Make sure the template is in its own file, with the same name.
+.. exercise::
+   #. Modify :file:`playground.js` so that there is a counter variable in the `setup`. You will need
+      to use the `useState
+      <https://github.com/odoo/owl/blob/master/doc/reference/hooks.md#usestate>`_ function so that
+      the component is re-rendered whenever any part of the state object has been read by this
+      component is modified.
+   #. In the same component, create an `increment` method.
+   #. Modify the template in :file:`playground.xml` so that it displays your counter variable. Use
+      `t-ecs <https://github.com/odoo/owl/blob/master/doc/reference/templates.md#outputting-data>`_
+      to output the data.
+   #. Add a button in the template and specify a `t-on-click
+      <https://github.com/odoo/owl/blob/master/doc/reference/event_handling.md#event-handling>`_
+      attribute in the button to trigger the `increment` method whenever the button is clicked.
 
-.. .. warning:: Don't forget the ``/** @odoo-module **/`` in your javascript files, more information
-..     on this can be found :ref:`here <frontend/modules/native_js>`.
+   .. image:: 01_components/counter.png
+      :align: center
+      :alt: A counter component.
 
-.. .. note:: References:
+.. spoiler:: Solution
 
-..     - `owl: github repository <https://github.com/odoo/owl>`_
-..     - `owl: documentation <https://github.com/odoo/owl#documentation>`_
-..     - `owl: using sub components <https://github.com/odoo/owl/blob/master/doc/reference/component.md#sub-components>`_
-..     - :ref:`odoo: assets documentation <reference/assets>`
+   todo
 
+Extract counter in a component
+==============================
 
-.. .. spoiler:: Preview
+For now we have the logic of a counter in `Playground`, let us see how to create a sub component
+from it.
 
-..     .. image:: 01_owl_framework/counter.png
-..        :align: center
-..        :alt: A counter component
+- Extract the counter code from the ``Playground`` component into a new ``Counter`` component.
+- You can do it in the same file first, but once it's done, update your code to move the ``Counter``
+  in its own file.
+- Make sure the template is in its own file, with the same name.
 
-
-.. .. spoiler:: Solution
-
-..     - `Solution of the exercice can be found here <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
+.. warning:: Don't forget the ``/** @odoo-module **/`` in your javascript files, more information
+             on this can be found :ref:`here <frontend/modules/native_js>`.
 
 A todo component
 ================
@@ -118,7 +135,7 @@ id (number), a description (string) and a status done (boolean). For example:
 
 .. spoiler:: Preview
 
-    .. image:: 01_owl_framework/todo.png
+    .. image:: 01_components/todo.png
        :align: center
        :alt: A Todo component
 
@@ -164,7 +181,7 @@ still hardcode the list.
 
 .. spoiler:: Preview
 
-    .. image:: 01_owl_framework/todoList.png
+    .. image:: 01_components/todoList.png
        :align: center
        :alt: A TodoList
 
@@ -201,7 +218,7 @@ should update the UI. This can be fixed by wrapping the todo list in a `useState
 
 .. spoiler:: Preview
 
-    .. image:: 01_owl_framework/createTodo.png
+    .. image:: 01_components/createTodo.png
        :align: center
        :alt: Creating todos
 
@@ -250,7 +267,7 @@ by using a callback prop `toggleState`
 
 .. spoiler:: Preview
 
-    .. image:: 01_owl_framework/togglingTodo.png
+    .. image:: 01_components/togglingTodo.png
        :align: center
        :alt: Toggling todos
 
@@ -270,7 +287,7 @@ The final touch is to let the user delete a todo.
 
 .. spoiler:: Preview
 
-    .. image:: 01_owl_framework/deletingTodo.png
+    .. image:: 01_components/deletingTodo.png
        :align: center
        :alt: Deleting todos
 
@@ -323,7 +340,7 @@ useful to factorize common layout between different parts of the interface.
 
 .. spoiler:: Preview
 
-    .. image:: 01_owl_framework/card.png
+    .. image:: 01_components/card.png
        :align: center
        :alt: Creating card with slots
 

@@ -1,8 +1,8 @@
 :show-content:
 
-=========================
-Discover the JS Framework
-=========================
+=================================
+Discover the JavaScript Framework
+=================================
 
 .. toctree::
     :titlesonly:
@@ -41,39 +41,40 @@ Started: Development environment setup <rdtraining/02_setup>` tutorial.
 
 The last things to do are:
 
-- Clone the `JS Training repository <https://github.com/ged-odoo/odoo-js-training-public>`_.
+- Clone the `official Odoo tutorials repository <https://github.com/odoo/tutorials>`_.
 - Add the cloned repository to the :option:`--addons-path <odoo-bin --addons-path>`.
-- Start a new Odoo database and install the module `owl_playground`.
+- Start a new Odoo database and install the modules `owl_playground`, `awesome_tshirt`, and
+  `awesome_gallery`.
 
-Architecture
-============
-Most of the time, javascript (and other assets) code should be structured like this:
+.. Architecture
+   ============
+..  Most of the time, javascript (and other assets) code should be structured like this:
 
-.. code-block:: bash
+.. .. code-block:: bash
 
-    module
-    └── static
-        ├── src
-        │   ├── notifications
-        │   │   ├── notification.js
-        │   │   ├── notification.scss
-        │   │   ├── notification.xml
-        │   │   └── notification_service.js
-        │   ├── some_component.js
-        │   └── some_component.xml
-        └── tests
-            ├── helpers.js
-            └── notification_tests.js
+..    module
+      └── static
+          ├── src
+          │   ├── notifications
+          │   │   ├── notification.js
+          │   │   ├── notification.scss
+          │   │   ├── notification.xml
+          │   │   └── notification_service.js
+          │   ├── some_component.js
+          │   └── some_component.xml
+          └── tests
+              ├── helpers.js
+              └── notification_tests.js
 
-The different modules of the training follow this hierarchy. You will find for example the first
-file to be modified in chapter 1 in ``owl_playground/static/src/playground.js``.
+.. The different modules of the training follow this hierarchy. You will find for example the first
+  file to be modified in chapter 1 in ``owl_playground/static/src/playground.js``.
 
-You are now ready to take the training. Let's get started!
+.. You are now ready to take the training. Let's get started!
 
 Exercises
 =========
 
-* :doc:`discover_js_framework/01_owl_framework`
+* :doc:`discover_js_framework/01_components`
 * :doc:`discover_js_framework/02_odoo_web_framework`
 * :doc:`discover_js_framework/03_fields_and_views`
 * :doc:`discover_js_framework/04_miscellaneous`
