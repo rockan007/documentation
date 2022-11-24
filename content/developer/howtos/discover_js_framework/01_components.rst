@@ -132,17 +132,17 @@ id (number), a description (string) and a status done (boolean). For example:
              this.todo = { id: 3, description: "buy milk", done: false };
            }
 
+   .. image:: 01_components/todo.png
+      :align: center
+      :alt: A Todo component
+
 .. note:: References:
 
     - `owl: props <https://github.com/odoo/owl/blob/master/doc/reference/props.md>`_
     - `owl: Dynamic attributes <https://github.com/odoo/owl/blob/master/doc/reference/templates.md#dynamic-attributes>`_
     - `owl: Dynamic class attributes <https://github.com/odoo/owl/blob/master/doc/reference/templates.md#dynamic-class-attribute>`_
 
-.. spoiler:: Preview
 
-    .. image:: 01_components/todo.png
-       :align: center
-       :alt: A Todo component
 
 
 .. spoiler:: Solution
@@ -184,16 +184,13 @@ still hardcode the list.
       `t-foreach` in the template
    #. Think about how it should be keyed
 
+   .. image:: 01_components/todoList.png
+      :align: center
+      :alt: A TodoList
+
 .. note:: References:
 
     - `owl: t-foreach <https://github.com/odoo/owl/blob/master/doc/reference/templates.md#loops>`_
-
-.. spoiler:: Preview
-
-    .. image:: 01_components/todoList.png
-       :align: center
-       :alt: A TodoList
-
 
 .. spoiler:: Solution
 
@@ -218,20 +215,21 @@ a todo to the list.
     Notice that nothing updates in the UI: this is because Owl does not know that it
     should update the UI. This can be fixed by wrapping the todo list in a `useState`
 
-.. code-block:: javascript
+    .. code-block:: javascript
 
-    this.todos = useState([]);
+        this.todos = useState([]);
+
+   .. image:: 01_components/createTodo.png
+      :align: center
+      :alt: Creating todos
+
 
 .. note:: References:
 
     - `owl: reactivity <https://github.com/odoo/owl/blob/master/doc/reference/reactivity.md>`_
     - `owl: event handling <https://github.com/odoo/owl/blob/master/doc/reference/event_handling.md>`_
 
-.. spoiler:: Preview
 
-    .. image:: 01_components/createTodo.png
-       :align: center
-       :alt: Creating todos
 
 .. spoiler:: Solution
 
@@ -275,15 +273,14 @@ way to do this is by using a callback prop `toggleState`.
       the `toggleState` function with the todo id.
    #. Make it work!
 
+   .. image:: 01_components/togglingTodo.png
+      :align: center
+      :alt: Toggling todos
+
 .. note:: References:
 
     - `owl: binding function props <https://github.com/odoo/owl/blob/master/doc/reference/props.md#binding-function-props>`_
 
-.. spoiler:: Preview
-
-    .. image:: 01_components/togglingTodo.png
-       :align: center
-       :alt: Toggling todos
 
 .. spoiler:: Solution
 
@@ -301,11 +298,9 @@ The final touch is to let the user delete a todo.
    * Ahenever the user clicks on it, it should call the ``removeTodo`` method
    * Make it work as expected
 
-.. spoiler:: Preview
-
-    .. image:: 01_components/deletingTodo.png
-       :align: center
-       :alt: Deleting todos
+   .. image:: 01_components/deletingTodo.png
+      :align: center
+      :alt: Deleting todos
 
 .. spoiler:: Solution
 
