@@ -62,6 +62,7 @@ As a first exercise, let us implement a counter in the `Playground` component lo
 :file:`owl_playground/static/src/`.
 
 .. exercise::
+
    #. Modify :file:`playground.js` so that there is a counter variable in the `setup`. You will need
       to use the `useState
       <https://github.com/odoo/owl/blob/master/doc/reference/hooks.md#usestate>`_ function so that
@@ -89,10 +90,12 @@ Extract counter in a component
 For now we have the logic of a counter in `Playground`, let us see how to create a sub component
 from it.
 
-- Extract the counter code from the ``Playground`` component into a new ``Counter`` component.
-- You can do it in the same file first, but once it's done, update your code to move the ``Counter``
-  in its own file.
-- Make sure the template is in its own file, with the same name.
+.. exercise::
+
+   #. Extract the counter code from the ``Playground`` component into a new ``Counter`` component.
+   #. You can do it in the same file first, but once it's done, update your code to move the ``Counter``
+      in its own file.
+   #. Make sure the template is in its own file, with the same name.
 
 .. warning:: Don't forget the ``/** @odoo-module **/`` in your javascript files, more information
              on this can be found :ref:`here <frontend/modules/native_js>`.
@@ -112,20 +115,22 @@ id (number), a description (string) and a status done (boolean). For example:
 
         { id: 3, description: "buy milk", done: false }
 
-- Create a ``Todo`` component that receive a ``todo`` in
-  `props <https://github.com/odoo/owl/blob/master/doc/reference/props.md>`_, and display it:
-  it should show something like ``3. buy milk``
-- Add the bootstrap classes ``text-muted`` and ``text-decoration-line-through`` on the task
-  if it is done
-- modify ``owl_playground/static/src/playground.js`` and ``owl_playground/static/src/playground.xml``
-  to display your new ``Todo`` component, with some hardcoded props to test it first. For example
+.. exercise::
 
-    .. code-block:: javascript
+   #. Create a ``Todo`` component that receive a ``todo`` in
+      `props <https://github.com/odoo/owl/blob/master/doc/reference/props.md>`_, and display it:
+      it should show something like ``3. buy milk``
+   #. Add the bootstrap classes ``text-muted`` and ``text-decoration-line-through`` on the task
+      if it is done
+   #. Modify ``owl_playground/static/src/playground.js`` and ``owl_playground/static/src/playground.xml``
+      to display your new ``Todo`` component, with some hardcoded props to test it first. For example
 
-        setup() {
-            ...
-            this.todo = { id: 3, description: "buy milk", done: false };
-        }
+      .. code-block:: javascript
+
+         setup() {
+             ...
+             this.todo = { id: 3, description: "buy milk", done: false };
+           }
 
 .. note:: References:
 
@@ -142,7 +147,7 @@ id (number), a description (string) and a status done (boolean). For example:
 
 .. spoiler:: Solution
 
-    - `Solution of the exercice can be found here (TODO) <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
+    - `Solution of the exercise can be found here (TODO) <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
 
 Props validation
 ================
@@ -152,8 +157,10 @@ todo in a specified format: `id`, `description` and `done`. Let us make that API
 we can add a props definition that will let Owl perform a validation step in dev mode.
 It is a good practice to do that for every component.
 
-- Add `props validation <https://github.com/odoo/owl/blob/master/doc/reference/props.md#props-validation>`_ to ``Todo``
-- Make sure it fails in dev mode
+.. exercise::
+
+   #. Add `props validation <https://github.com/odoo/owl/blob/master/doc/reference/props.md#props-validation>`_ to ``Todo``
+   #. Make sure it fails in dev mode
 
 .. note:: References:
 
@@ -163,7 +170,7 @@ It is a good practice to do that for every component.
 
 .. spoiler:: Solution
 
-    - `Solution of the exercice can be found here (TODO) <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
+    - `Solution of the exercise can be found here (TODO) <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
 
 A list of todos
 ===============
@@ -171,9 +178,11 @@ A list of todos
 Now, let us display a list of todos instead of just one todo. For now, we can
 still hardcode the list.
 
-- Change the code to display a list of todos, instead of just one, and use
-  `t-foreach` in the template
-- Think about how it should be keyed
+.. exercise::
+
+   #. Change the code to display a list of todos, instead of just one, and use
+      `t-foreach` in the template
+   #. Think about how it should be keyed
 
 .. note:: References:
 
@@ -188,7 +197,7 @@ still hardcode the list.
 
 .. spoiler:: Solution
 
-    - `Solution of the exercice can be found here (TODO) <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
+    - `Solution of the exercise can be found here (TODO) <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
 
 Adding a todo
 =============
@@ -196,16 +205,18 @@ Adding a todo
 So far, the todos in our list are hardcoded. Let us make it more useful by allowing the user to add
 a todo to the list.
 
-- Add input above the task list with placeholder ``Enter a new task``
-- Add an event handler on the ``keyup`` event named ``addTodo``
-- Implement ``addTodo`` to check if enter was pressed (``ev.keyCode === 13``), and
-  in that case, create a new todo with the current content of the input as description
-- Make sure it has a unique id (it can be just a counter that increments at each todo)
-- Then clear the input of all content
-- Bonus point: don't do anything if input is empty
+.. exercise::
 
-Notice that nothing updates in the UI: this is because Owl does not know that it
-should update the UI. This can be fixed by wrapping the todo list in a `useState`
+   #. Add input above the task list with placeholder ``Enter a new task``
+   #. Add an event handler on the ``keyup`` event named ``addTodo``
+   #. Implement ``addTodo`` to check if enter was pressed (``ev.keyCode === 13``), and
+      in that case, create a new todo with the current content of the input as description
+   #. Make sure it has a unique id (it can be just a counter that increments at each todo)
+   #. Then clear the input of all content
+   #. Bonus point: don't do anything if input is empty
+
+    Notice that nothing updates in the UI: this is because Owl does not know that it
+    should update the UI. This can be fixed by wrapping the todo list in a `useState`
 
 .. code-block:: javascript
 
@@ -224,15 +235,17 @@ should update the UI. This can be fixed by wrapping the todo list in a `useState
 
 .. spoiler:: Solution
 
-    - `Solution of the exercice can be found here (TODO) <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
+    - `Solution of the exercise can be found here (TODO) <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
 
 Focusing the input
 ==================
 
 Let's see how we can access the DOM with `t-ref <https://github.com/odoo/owl/blob/master/doc/reference/refs.md>`_.
 
-- Focus the ``input`` from the previous exercise whenever the dashboard is mounted.
-- Bonus point: extract the code into a specialized hook ``useAutofocus``
+.. exercise::
+
+   #. Focus the ``input`` from the previous exercise whenever the dashboard is mounted.
+   #. Bonus point: extract the code into a specialized hook ``useAutofocus``
 
 .. note:: References:
 
@@ -242,24 +255,25 @@ Let's see how we can access the DOM with `t-ref <https://github.com/odoo/owl/blo
 
 .. spoiler:: Solution
 
-    - `Solution of the exercice can be found here (TODO) <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
+    - `Solution of the exercise can be found here (TODO) <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
 
 
 Toggling todos
 ==============
 
-Now, let's add a new feature: mark a todo as completed. This is actually
-trickier than one might think: the owner of the state is not the same as the
-component that displays it. So, the `Todo` component need to communicate to its
-parent that the todo state needs to be toggled. One classic way to do this is
-by using a callback prop `toggleState`
+Now, let's add a new feature: mark a todo as completed. This is actually trickier than one might
+think: the owner of the state is not the same as the component that displays it. So, the `Todo`
+component need to communicate to its parent that the todo state needs to be toggled. One classic
+way to do this is by using a callback prop `toggleState`.
 
-- Add an input of ``type="checkbox"`` before the id of the task, which is checked if
-  the ``done`` state is true
-- Add a callback props ``toggleState``
-- Add a ``click`` event handler on the input in ``Todo``, and make sure it calls
-  the `toggleState` function with the todo id.
-- Make it work!
+.. exercise::
+
+   #. Add an input of ``type="checkbox"`` before the id of the task, which is checked if
+      the ``done`` state is true
+   #. Add a callback props ``toggleState``
+   #. Add a ``click`` event handler on the input in ``Todo``, and make sure it calls
+      the `toggleState` function with the todo id.
+   #. Make it work!
 
 .. note:: References:
 
@@ -273,17 +287,19 @@ by using a callback prop `toggleState`
 
 .. spoiler:: Solution
 
-    - `Solution of the exercice can be found here (TODO) <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
+    - `Solution of the exercise can be found here (TODO) <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
 
 Deleting todos
 ==============
 
 The final touch is to let the user delete a todo.
 
-- Add a new callback prop ``removeTodo``
-- Add a ``<span class="fa fa-remove">`` in the Todo component
-- Ahenever the user clicks on it, it should call the ``removeTodo`` method
-- Make it work as expected
+.. exercise::
+
+   * Add a new callback prop ``removeTodo``
+   * Add a ``<span class="fa fa-remove">`` in the Todo component
+   * Ahenever the user clicks on it, it should call the ``removeTodo`` method
+   * Make it work as expected
 
 .. spoiler:: Preview
 
@@ -293,44 +309,45 @@ The final touch is to let the user delete a todo.
 
 .. spoiler:: Solution
 
-    - `Solution of the exercice can be found here (TODO) <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
+    - `Solution of the exercise can be found here (TODO) <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
 
 Generic components with slots
 =============================
 
-Owl has a powerful slot system to allow you to write generic components. This is
-useful to factorize common layout between different parts of the interface.
+Owl has a powerful slot system to allow you to write generic components. This is useful to
+factorize common layout between different parts of the interface.
 
+.. exercise::
 
-- Write a ``Card`` component, using the following bootstrap html structure:
+   #. Write a ``Card`` component, using the following bootstrap html structure:
 
-    .. code-block:: html
+      .. code-block:: html
 
-        <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="..." />
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">
-                Some quick example text to build on the card title and make up the bulk
-                of the card's content.
-            </p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
+         <div class="card" style="width: 18rem;">
+             <img src="..." class="card-img-top" alt="..." />
+             <div class="card-body">
+             <h5 class="card-title">Card title</h5>
+             <p class="card-text">
+                 Some quick example text to build on the card title and make up the bulk
+                 of the card's content.
+             </p>
+             <a href="#" class="btn btn-primary">Go somewhere</a>
+             </div>
+         </div>
 
-- This component should have two slots: one slot for the title, and one for
-  the content (the default slot). For example, here is how one could use it:
+   #. This component should have two slots: one slot for the title, and one for
+      the content (the default slot). For example, here is how one could use it:
 
-    .. code-block:: html
+      .. code-block:: html
 
-        <Card>
-            <t t-set-slot="title">Card title</t>
-            <p class="card-text">Some quick example text...</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-        </Card>
+            <Card>
+               <t t-set-slot="title">Card title</t>
+               <p class="card-text">Some quick example text...</p>
+               <a href="#" class="btn btn-primary">Go somewhere</a>
+            </Card>
 
-- Bonus point: if the ``title`` slot is not given, the ``h5`` should not be
-  rendered at all
+   #. Bonus point: if the ``title`` slot is not given, the ``h5`` should not be
+      rendered at all
 
 .. note:: References:
 
@@ -346,14 +363,16 @@ useful to factorize common layout between different parts of the interface.
 
 .. spoiler:: Solution
 
-    - `Solution of the exercice can be found here (TODO) <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
+    - `Solution of the exercise can be found here (TODO) <https://github.com/ged-odoo/odoo-js-training-public/commit/efd7bdbf6f12abd44479de6de5ae96525649d925>`_
 
-Miscellaneous small tasks
-=========================
+Go further
+==========
 
-- Add prop validation on the ``Card`` component
-- Try to express in the prop validation system that it requires a ``default``
-  slot, and an optional ``title`` slot
+.. exercise::
+
+   #. Add prop validation on the ``Card`` component
+   #. Try to express in the prop validation system that it requires a ``default``
+      slot, and an optional ``title`` slot
 
 .. note:: References:
 
