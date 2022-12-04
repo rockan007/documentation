@@ -2,9 +2,9 @@ name: Odoo Doc CI
 
 on:
   push:
-    branches: [ "16.0-translations" ]
+    branches: [ "16.0" ]
   pull_request:
-    branches: [ "16.0-translations" ]
+    branches: [ "16.0" ]
 
 jobs:
   build:
