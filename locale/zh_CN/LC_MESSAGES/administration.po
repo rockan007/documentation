@@ -30,7 +30,7 @@ msgstr ""
 
 #: ../../content/administration.rst:13
 msgid ":doc:`History of Versions <administration/maintain/supported_versions>`"
-msgstr ":doc:\"历史版本<administration/maintain/supported_versions>\""
+msgstr ":doc:`历史版本 <administration/maintain/supported_versions>`"
 
 #: ../../content/administration/install.rst:5
 msgid "Install"

@@ -23,7 +23,7 @@ msgstr "开发者"
 
 #: ../../content/developer.rst:11
 msgid "Learn through tutorials and get help using reference guides."
-msgstr ""
+msgstr "通过教程学习并使用参考指南获得帮助."
 
 #: ../../content/developer/api.rst:5
 #: ../../content/developer/reference/backend/http.rst:52
@@ -45,7 +45,7 @@ msgstr ""
 #: ../../content/developer/reference/frontend/services.rst:777
 #: ../../content/developer/reference/frontend/services.rst:845
 msgid "API"
-msgstr ""
+msgstr "API"
 
 #: ../../content/developer/api/external_api.rst:3
 msgid "External API"
@@ -59,6 +59,10 @@ msgid ""
 ":ref:`reference/orm/model` API is easily available over XML-RPC_ and "
 "accessible from a variety of languages."
 msgstr ""
+"Odoo 通常通过模块在内部扩展,但是它的许多特性和所有数据"
+"都可以通过多种工具从外部进行分析和集成.部分"
+" :ref:`reference/orm/model` API 可用通过 XML-RPC_ 轻易获得,"
+"并且可以通过多种语言访问."
 
 #: ../../content/developer/api/external_api.rst:11
 msgid ""
@@ -67,24 +71,27 @@ msgid ""
 "<https://www.php.net/manual/en/xmlrpc.installation.php>`_ for the "
 "installation steps."
 msgstr ""
+"从PHP8开始,XML-RPC插件可能默认不可用,"
+"查询 `文档 <https://www.php.net/manual/en/xmlrpc.installation.php>`_ 用于安装步骤."
 
 #: ../../content/developer/api/external_api.rst:16
 msgid ":doc:`Tutorial on web services <../howtos/web_services>`"
-msgstr ""
+msgstr ":doc:`Web服务教程 <../howtos/web_services>`"
 
 #: ../../content/developer/api/external_api.rst:19
 msgid "Connection"
-msgstr ""
+msgstr "关联"
 
 #: ../../content/developer/api/external_api.rst:22
 msgid "Configuration"
-msgstr ""
+msgstr "配置"
 
 #: ../../content/developer/api/external_api.rst:24
 msgid ""
 "If you already have an Odoo server installed, you can just use its "
 "parameters."
 msgstr ""
+"如果你已经安装了一个Odoo服务,你可以直接使用它的参数."
 
 #: ../../content/developer/api/external_api.rst:28
 msgid ""
@@ -94,28 +101,32 @@ msgid ""
 "Odoo Online instances, you will need to set a password on the user "
 "account you want to use:"
 msgstr ""
+"对于Odoo在线实例 (<domain>.odoo.com),用户创建时没有 *本地* 密码"
+"(作为个人通过Odoo在线认证系统登录,而不是通过实例)."
+"为了在Odoo在线实例上使用XML-RPC,你需要为你的帐号设置一个你要使用的密码:"
 
 #: ../../content/developer/api/external_api.rst:34
 msgid "Log in your instance with an administrator account."
-msgstr ""
+msgstr "使用管理员帐号登录你的实例."
 
 #: ../../content/developer/api/external_api.rst:35
 msgid "Go to :menuselection:`Settings --> Users & Companies --> Users`."
-msgstr ""
+msgstr "找到 :menuselection:`Settings --> Users & Companies --> Users`."
 
 #: ../../content/developer/api/external_api.rst:36
 msgid "Click on the user you want to use for XML-RPC access."
-msgstr ""
+msgstr "点击要用于XML-RPC访问的用户."
 
 #: ../../content/developer/api/external_api.rst:37
 msgid "Click on :guilabel:`Action` and select :guilabel:`Change Password`."
-msgstr ""
+msgstr "点击 :guilabel:`Action` 然后选择 :guilabel:`Change Password`."
 
 #: ../../content/developer/api/external_api.rst:38
 msgid ""
 "Set a :guilabel:`New Password` value then click :guilabel:`Change "
 "Password`."
 msgstr ""
+"设置 :guilabel:`New Password` 然后点击 :guilabel:`Change Password`."
 
 #: ../../content/developer/api/external_api.rst:40
 msgid ""
@@ -124,16 +135,21 @@ msgid ""
 "instance (e.g. *mycompany*). The *username* is the configured user's "
 "login as shown by the *Change Password* screen."
 msgstr ""
+"*服务url* 是指实例的域名(例如: *https://mycompany.odoo.com*)"
+" *数据库名称* 是指实例的名称(例如: *mycompany*). *用户名* 是"
+"配置用户的登录名,如 *改变密码* 页面所示."
 
 #: ../../content/developer/api/external_api.rst:76
 msgid "API Keys"
-msgstr ""
+msgstr "API 密钥"
 
 #: ../../content/developer/api/external_api.rst:80
 msgid ""
 "Odoo has support for **api keys** and (depending on modules or settings) "
 "may **require** these keys to perform webservice operations."
 msgstr ""
+"Odoo支持 **api密钥**,并且(取决与模块或设置)"
+"可能 **需要** 这些密钥来执行web服务操作."
 
 #: ../../content/developer/api/external_api.rst:83
 msgid ""
@@ -143,18 +159,23 @@ msgid ""
 " access to your user account (although they can not be used to log-in via"
 " the interface)."
 msgstr ""
+"在你的脚本中使用API密钥方式是,直接用密钥替换掉密码.登录依然可用."
+"一应当想存储密码一样存储你的API密钥,因为它们从根本上对你的账户提供了相同的访问权限"
+"(虽然它们不能于界面登录)."
 
 #: ../../content/developer/api/external_api.rst:88
 msgid ""
 "In order to add a key to your account, simply go to your "
 ":guilabel:`Preferences` (or :guilabel:`My Profile`):"
 msgstr ""
+"要在你账户中添加一个密钥,直接去 :guilabel:`Preferences` (或者 :guilabel:`My Profile`):"
 
 #: ../../content/developer/api/external_api.rst:94
 msgid ""
 "then open the :guilabel:`Account Security` tab, and click :guilabel:`New "
 "API Key`:"
 msgstr ""
+"然后打开 :guilabel:`账号安全` 选项卡,点击 :guilabel:`新建API密钥`"
 
 #: ../../content/developer/api/external_api.rst:100
 msgid ""
@@ -163,6 +184,8 @@ msgid ""
 "your keys later and know whether you should remove them or keep them "
 "around."
 msgstr ""
+"填写密钥的描述, **描述要尽量清晰和完整**:"
+"它是你稍后区别这些密钥,以及你决定是否应该删除它们的依据."
 
 #: ../../content/developer/api/external_api.rst:104
 msgid ""
@@ -172,28 +195,33 @@ msgid ""
 "later on. If you lose this key, you will have to create a new one (and "
 "probably delete the one you lost)."
 msgstr ""
+"点击 :guilabel:`生成密钥`,然后复制它. **小心的保存这个密钥**:"
+"它等同于你的密码,而且与密码一样,系统无法找回或再次显示密钥."
+"如果你丢失了此密钥,则必须创建一个新密钥(并删除弄丢的那个)."
 
 #: ../../content/developer/api/external_api.rst:110
 msgid ""
 "Once you have keys configured on your account, they will appear above the"
 " :guilabel:`New API Key` button, and you will be able to delete them:"
 msgstr ""
+"一旦你在账户上配置了密钥,他们会出现在 :guilabel:`新建API密钥` 按钮上方,你可以随时删除它们:"
 
 #: ../../content/developer/api/external_api.rst:116
 msgid ""
 "**A deleted API key can not be undeleted or re-set**. You will have to "
 "generate a new key and update all the places where you used the old one."
 msgstr ""
+"**删除的API密钥** 不可恢复.你必须新建一个密钥,然后用它更新所有使用旧密钥的地方."
 
 #: ../../content/developer/api/external_api.rst:120
 msgid "Test database"
-msgstr ""
+msgstr "测试数据库"
 
 #: ../../content/developer/api/external_api.rst:122
 msgid ""
 "To make exploration simpler, you can also ask https://demo.odoo.com for a"
 " test database:"
-msgstr ""
+msgstr "方便起见,你可以在 https://demo.odoo.com 下载一个测试数据库:"
 
 #: ../../content/developer/api/external_api.rst:139
 msgid "PHP"
@@ -207,6 +235,9 @@ msgid ""
 "<https://php.net/manual/en/xmlrpc.installation.php>`_ in your PHP "
 "installation."
 msgstr ""
+"这些例子使用了 `Ripcord <https://code.google.com/p/ripcord/>`_ 第三方库,"
+"这个库提供了简单的 XML-RPC API.Ripcord 需要在PHP中 " 
+"`启用XML-RPC <https://php.net/manual/en/xmlrpc.installation.php>`_ "
 
 #: ../../content/developer/api/external_api.rst:154
 msgid ""
@@ -215,6 +246,8 @@ msgid ""
 "`OpenSSL extension <https://php.net/manual/en/openssl.installation.php>`_"
 " be enabled."
 msgstr ""
+"由于调用是通过 `HTTPS <https://en.wikipedia.org/wiki/HTTP_Secure>`_ 的,"
+"它要求启用 `OpenSSL扩展 <https://php.net/manual/en/openssl.installation.php>`_ "
 
 #: ../../content/developer/api/external_api.rst:159
 msgid "Java"
@@ -224,23 +257,24 @@ msgstr ""
 msgid ""
 "These examples use the `Apache XML-RPC library "
 "<https://ws.apache.org/xmlrpc/>`_."
-msgstr ""
+msgstr "这些例子使用了 `Apache XML-RPC库 <https://ws.apache.org/xmlrpc/>`_."
 
 #: ../../content/developer/api/external_api.rst:178
 msgid ""
 "The examples do not include imports as these imports couldn't be pasted "
 "in the code."
 msgstr ""
+"这些示例中不包含导入,因为这些导入无法粘贴到代码中."
 
 #: ../../content/developer/api/external_api.rst:182
 msgid "Logging in"
-msgstr ""
+msgstr "登录"
 
 #: ../../content/developer/api/external_api.rst:184
 msgid ""
 "Odoo requires users of the API to be authenticated before they can query "
 "most data."
-msgstr ""
+msgstr "Odoo 要求使用API的用户在他们请求数据前首先验证身份."
 
 #: ../../content/developer/api/external_api.rst:187
 msgid ""
@@ -252,6 +286,10 @@ msgid ""
 "function and returns a user identifier (``uid``) used in authenticated "
 "calls instead of the login."
 msgstr ""
+"``xmlrpc/2/common`` 端点提供了不需要身份验证的元调用.包括身份验证或获取版本信息等."
+"在身份验证前确认连接信息是否正确的最简单调用是请求服务器版本."
+"身份验证通过 ``authenticate`` 方法并返回一个用户标识符(``uid``)--用来"
+"身份验证后的调用,从而避免登录."
 
 #: ../../content/developer/api/external_api.rst:218
 #: ../../content/developer/api/external_api.rst:304
@@ -269,49 +307,50 @@ msgstr ""
 #: ../../content/developer/api/external_api.rst:1119
 #: ../../content/developer/howtos/web.rst:655
 msgid "Result:"
-msgstr ""
+msgstr "结果:"
 
 #: ../../content/developer/api/external_api.rst:251
 msgid "Calling methods"
-msgstr ""
+msgstr "调用方法"
 
 #: ../../content/developer/api/external_api.rst:253
 msgid ""
 "The second endpoint is ``xmlrpc/2/object``. It is used to call methods of"
 " odoo models via the ``execute_kw`` RPC function."
 msgstr ""
+"第二个端点是 ``xmlrpc/2/object``.它被用来调用那些通过 ``execute_kw`` RPC 函数调用odoo模型的方法."
 
 #: ../../content/developer/api/external_api.rst:256
 msgid "Each call to ``execute_kw`` takes the following parameters:"
-msgstr ""
+msgstr "每个 ``execute_kw`` 调用使用以下参数:"
 
 #: ../../content/developer/api/external_api.rst:258
 msgid "the database to use, a string"
-msgstr ""
+msgstr "要使用的数据库,字符串"
 
 #: ../../content/developer/api/external_api.rst:259
 msgid "the user id (retrieved through ``authenticate``), an integer"
-msgstr ""
+msgstr "用户id(通过 ``身份验证`` 获得),整型"
 
 #: ../../content/developer/api/external_api.rst:260
 msgid "the user's password, a string"
-msgstr ""
+msgstr "用户密码,字符串"
 
 #: ../../content/developer/api/external_api.rst:261
 msgid "the model name, a string"
-msgstr ""
+msgstr "模型名,字符串"
 
 #: ../../content/developer/api/external_api.rst:262
 msgid "the method name, a string"
-msgstr ""
+msgstr "方法名,字符串"
 
 #: ../../content/developer/api/external_api.rst:263
 msgid "an array/list of parameters passed by position"
-msgstr ""
+msgstr "按位置传递的参数数组/列表"
 
 #: ../../content/developer/api/external_api.rst:264
 msgid "a mapping/dict of parameters to pass by keyword (optional)"
-msgstr ""
+msgstr "要通过关键字传递的参数的映射/字典（可选）"
 
 #: ../../content/developer/api/external_api.rst:268
 msgid ""
@@ -320,14 +359,17 @@ msgid ""
 "``raise_exception`` passed by keyword (in order to get a true/false "
 "result rather than true/error):"
 msgstr ""
+"例如:查看我们是否能读取 ``res.partner`` 模型,"
+"我们可以调用 ``check-access_rights`` ,并通过位置传递 ``operation``,"
+"通过关键字传递 ``raise_exception``(从而获取一个true/false的结果,而非true/error) "
 
 #: ../../content/developer/api/external_api.rst:311
 msgid "List records"
-msgstr ""
+msgstr "记录列表"
 
 #: ../../content/developer/api/external_api.rst:313
 msgid "Records can be listed and filtered via :meth:`~odoo.models.Model.search`."
-msgstr ""
+msgstr "记录可以通过 :meth:`~odoo.models.Model.search` 罗列和过滤."
 
 #: ../../content/developer/api/external_api.rst:315
 msgid ""
@@ -335,13 +377,16 @@ msgid ""
 "<reference/orm/domains>` filter (possibly empty), and returns the "
 "database identifiers of all records matching the filter."
 msgstr ""
+":meth:`~odoo.models.Model.search` 提供了强制性 :ref:`domain "
+"<reference/orm/domains>` 过滤器(可能为空),"
+"并返回与过滤器匹配的所有记录的数据库标识符."
 
 #: ../../content/developer/api/external_api.rst:321
 msgid "To list customer companies, for instance:"
-msgstr ""
+msgstr "示例:罗列客户的公司"
 
 #: ../../content/developer/api/external_api.rst:353
-msgid "Pagination"
+msgid "分页"
 msgstr ""
 
 #: ../../content/developer/api/external_api.rst:355
