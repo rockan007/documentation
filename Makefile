@@ -2,7 +2,7 @@
 
 # Pass WORKERS=1 for single-worker build
 ifndef WORKERS
-  WORKERS = 1
+  WORKERS = 2
 endif
 
 ifndef BUILD_DIR

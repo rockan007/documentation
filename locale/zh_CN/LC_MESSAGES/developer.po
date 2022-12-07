@@ -361,7 +361,7 @@ msgid ""
 msgstr ""
 "例如:查看我们是否能读取 ``res.partner`` 模型,"
 "我们可以调用 ``check-access_rights`` ,并通过位置传递 ``operation``,"
-"通过关键字传递 ``raise_exception``(从而获取一个true/false的结果,而非true/error) "
+"通过关键字传递 ``raise_exception`` (从而获取一个true/false的结果,而非true/error) "
 
 #: ../../content/developer/api/external_api.rst:311
 msgid "List records"
@@ -386,8 +386,8 @@ msgid "To list customer companies, for instance:"
 msgstr "示例:罗列客户的公司"
 
 #: ../../content/developer/api/external_api.rst:353
-msgid "分页"
-msgstr ""
+msgid "Pagination"
+msgstr "分页"
 
 #: ../../content/developer/api/external_api.rst:355
 msgid ""
@@ -396,10 +396,12 @@ msgid ""
 "parameters are available to only retrieve a subset of all matched "
 "records."
 msgstr ""
+"默认搜索会返回匹配的所有记录的id--可能会是一个很大的数量."
+" ``offest`` 和 ``limit`` 参数可以用来只检索匹配记录的一部分."
 
 #: ../../content/developer/api/external_api.rst:392
 msgid "Count records"
-msgstr ""
+msgstr "记录计数"
 
 #: ../../content/developer/api/external_api.rst:394
 msgid ""
@@ -409,6 +411,10 @@ msgid ""
 "<reference/orm/domains>` filter as :meth:`~odoo.models.Model.search` and "
 "no other parameter."
 msgstr ""
+"相比检索可能几G的记录列表,并计数,"
+" :meth:`~odoo.models.Model.search_count` 可以用来检索匹配到查询记录的数量."
+"它使用与 :meth:`~odoo.models.Model.search` 一致 :ref:`domain <reference/orm/domains>` 过滤器,"
+"并无其他参数."
 
 #: ../../content/developer/api/external_api.rst:432
 msgid ""
@@ -416,10 +422,13 @@ msgid ""
 "not yield coherent results if other users are using the server: stored "
 "data could have changed between the calls."
 msgstr ""
+"如果其他用户正在使用服务:不同调用之间的数据可能已改变."
+"调用 ``search`` 然后 ``search_count`` (或者其他相关方法)"
+"可能不会产生一致的结果."
 
 #: ../../content/developer/api/external_api.rst:437
 msgid "Read records"
-msgstr ""
+msgstr "读取记录"
 
 #: ../../content/developer/api/external_api.rst:439
 msgid ""
@@ -429,24 +438,29 @@ msgid ""
 "fetch. By default, it fetches all the fields the current user can read, "
 "which tends to be a huge amount."
 msgstr ""
+"数据记录可以通过方法 :meth:`~odoo.models.Model.read` 访问,"
+"此方法会通过ids(通过 :meth:`~odoo.models.Model.search` 返回),"
+"和可选的字段列表来获取.默认情况下,它会读取所有当前用户可读的字段--可能会有很多."
 
 #: ../../content/developer/api/external_api.rst:495
 msgid "Conversely, picking only three fields deemed interesting."
-msgstr ""
+msgstr "相反的,如果只取三个字段可能会比较奇特."
 
 #: ../../content/developer/api/external_api.rst:529
 msgid "Even if the ``id`` field is not requested, it is always returned."
-msgstr ""
+msgstr "不管是否请求了 `id` 字段,它总是被返回."
 
 #: ../../content/developer/api/external_api.rst:532
 msgid "List record fields"
-msgstr ""
+msgstr "记录字段列表"
 
 #: ../../content/developer/api/external_api.rst:534
 msgid ""
 ":meth:`~odoo.models.Model.fields_get` can be used to inspect a model's "
 "fields and check which ones seem to be of interest."
 msgstr ""
+":meth:`~odoo.models.Model.fields_get` 被用来检测模型的字段,"
+"和查看哪些字段是想要的"
 
 #: ../../content/developer/api/external_api.rst:537
 msgid ""
@@ -456,10 +470,14 @@ msgid ""
 "``help`` (a help text if available) and ``type`` (to know which values to"
 " expect, or to send when updating a record)."
 msgstr ""
+"因为它返回了大量的元信息(它也被客户端程序所使用),"
+"对一个人类用户来说,最感兴趣的可能是 ``string`` (字段标签),"
+" ``help`` (一个帮助文档--如果可用)和 ``type`` "
+"(从而知道期望的值或在更新记录时发送的值)."
 
 #: ../../content/developer/api/external_api.rst:612
 msgid "Search and read"
-msgstr ""
+msgstr "搜索和读取"
 
 #: ../../content/developer/api/external_api.rst:614
 msgid ""
@@ -469,6 +487,9 @@ msgid ""
 "by a :meth:`~odoo.models.Model.read`, but avoids having to perform two "
 "requests and keep ids around."
 msgstr ""
+"由于这是一个非常常见的任务,Odoo提供了 :meth:`~Odoo.models.Model.serach_read` 快捷方式,"
+"就像名称所表明的,等同于 :meth:`~odoo.models.Model.read` 和 :meth:`~odoo.models.Model.read` ,"
+"但是避免了两次请求并获得了ids."
 
 #: ../../content/developer/api/external_api.rst:620
 msgid ""
@@ -477,16 +498,20 @@ msgid ""
 " if that list is not provided it will fetch all fields of matched "
 "records)."
 msgstr ""
+"它的参数与 :meth:`~odoo.models.Model.search` 相似,但它可以携带 ``fields`` 列表"
+"(类似方法 :meth:`~odoo.models.Model.read`,如果此列表未提供,它会获取匹配记录的所有字段)."
 
 #: ../../content/developer/api/external_api.rst:691
 msgid "Create records"
-msgstr ""
+msgstr "创建记录"
 
 #: ../../content/developer/api/external_api.rst:693
 msgid ""
 "Records of a model are created using :meth:`~odoo.models.Model.create`. "
 "The method creates a single record and returns its database identifier."
 msgstr ""
+"创建模型的记录使用 :meth:`~odoo.models.Model.create`."
+"此方法会创建单条记录,然后返回其在数据库中的标识符."
 
 #: ../../content/developer/api/external_api.rst:696
 msgid ""
@@ -495,6 +520,8 @@ msgid ""
 "and is not set through the mapping argument, the default value will be "
 "used."
 msgstr ""
+":meth:`~odoo.models.Model,create` 会携带字段和值的映射,用来初始化数据."
+"对于任何拥有默认值并未从映射参数中设置的字段,会使用其默认值."
 
 #: ../../content/developer/api/external_api.rst:731
 msgid ""
@@ -502,12 +529,17 @@ msgid ""
 ":class:`~odoo.fields.Integer`, string for :class:`~odoo.fields.Char` or "
 ":class:`~odoo.fields.Text`),"
 msgstr ""
+"当大多数值类型都是所期望的(integer 对于 :class:`~odoo.fields.Integer` ,"
+"string 对于 :class:`~odoo.fields.Char` 或 "
+":class:`~odoo.fields.Text`),"
 
 #: ../../content/developer/api/external_api.rst:735
 msgid ""
 ":class:`~odoo.fields.Date`, :class:`~odoo.fields.Datetime` and "
 ":class:`~odoo.fields.Binary` fields use string values"
 msgstr ""
+":class:`~odoo.fields.Date`, :class:`~odoo.fields.Datetime` 和 "
+":class:`~odoo.fields.Binary` 字段使用字符串值."
 
 #: ../../content/developer/api/external_api.rst:737
 msgid ""
@@ -515,10 +547,13 @@ msgid ""
 "special command protocol detailed in :meth:`the documentation to the "
 "write method <odoo.models.Model.write>`."
 msgstr ""
+" :class:`~odoo.fields.One2many` 和 :class:`~odoo.fields.Many2many` 使用 "
+"特定的命令协议, 详情见 :meth:`the documentation to the "
+"write method <odoo.models.Model.write>`."
 
 #: ../../content/developer/api/external_api.rst:742
 msgid "Update records"
-msgstr ""
+msgstr "更新记录"
 
 #: ../../content/developer/api/external_api.rst:744
 msgid ""
@@ -526,6 +561,9 @@ msgid ""
 " list of records to update and a mapping of updated fields to values "
 "similar to :meth:`~odoo.models.Model.create`."
 msgstr ""
+"记录可以使用 :meth:`~odoo.models.Model.write`更新."
+"它携带一系列要升级的数据和一个字段和值的映射,"
+"类似与 :meth:`~odoo.models.Model.create`."
 
 #: ../../content/developer/api/external_api.rst:748
 msgid ""
@@ -534,20 +572,23 @@ msgid ""
 "\"computed\" updates (where the value being set depends on an existing "
 "value of a record)."
 msgstr ""
+"多个记录可同时被升级,但是它们在设置的字段上会拥有相同的值."
+"不可使用 \"computed\" 升级(其中设置的值依赖于现有记录的值)"
 
 #: ../../content/developer/api/external_api.rst:800
 msgid "Delete records"
-msgstr ""
+msgstr "删除记录"
 
 #: ../../content/developer/api/external_api.rst:802
 msgid ""
 "Records can be deleted in bulk by providing their ids to "
 ":meth:`~odoo.models.Model.unlink`."
 msgstr ""
+"可以将记录的 ID 提供给 :meth:`~odoo.models.Model.unlink` 来批量删除记录。"
 
 #: ../../content/developer/api/external_api.rst:849
 msgid "Inspection and introspection"
-msgstr ""
+msgstr "自检"
 
 #: ../../content/developer/api/external_api.rst:851
 msgid ""
@@ -557,14 +598,17 @@ msgid ""
 "the system and altering models and fields (with some limitations) on the "
 "fly over XML-RPC."
 msgstr ""
+"我们之前使用 :meth:`~odoo.models.Model,fields_get` 来查询模型,"
+"而且一开始使用了一个随意的模型.Odoo 在少数元模型中存储了大多数模型的元数据,"
+"这些元模型允许通过XML-RPC查询系统和更改模型和字段(有些限制)"
 
 #: ../../content/developer/api/external_api.rst:860
 msgid "``ir.model``"
-msgstr ""
+msgstr "``ir.model``"
 
 #: ../../content/developer/api/external_api.rst:862
 msgid "Provides information about Odoo models via its various fields."
-msgstr ""
+msgstr "通过它的多个字段提供Odoo模型的信息."
 
 #: ../../content/developer/api/external_api.rst:864
 #: ../../content/developer/api/external_api.rst:1000
@@ -585,7 +629,7 @@ msgstr ""
 
 #: ../../content/developer/api/external_api.rst:865
 msgid "a human-readable description of the model"
-msgstr ""
+msgstr "可读的模型描述"
 
 #: ../../content/developer/api/external_api.rst:866
 #: ../../content/developer/reference/backend/views.rst:2171
@@ -594,19 +638,20 @@ msgstr ""
 
 #: ../../content/developer/api/external_api.rst:867
 msgid "the name of each model in the system"
-msgstr ""
+msgstr "系统中每个模型的名称"
 
 #: ../../content/developer/api/external_api.rst:869
 #: ../../content/developer/api/external_api.rst:1007
 #: ../../content/developer/reference/backend/actions.rst:231
 msgid "``state``"
-msgstr ""
+msgstr "``state``"
 
 #: ../../content/developer/api/external_api.rst:869
 msgid ""
 "whether the model was generated in Python code (``base``) or by creating "
 "an ``ir.model`` record (``manual``)"
 msgstr ""
+"无论模型是通过Python代码( ``base`` ),还是通过创建一条 ``ir.model`` 记录( ``手动``)"
 
 #: ../../content/developer/api/external_api.rst:872
 msgid "``field_id``"
@@ -617,6 +662,7 @@ msgid ""
 "list of the model's fields through a :class:`~odoo.fields.One2many` to "
 ":ref:`reference/webservice/inspection/fields`"
 msgstr ""
+"模型字段列表, 与 :ref:`reference/webservice/inspection/fields` 是 :class:`~odoo.fields.One2many` 的关系 " 
 
 #: ../../content/developer/api/external_api.rst:875
 #: ../../content/developer/reference/backend/actions.rst:148
@@ -628,6 +674,7 @@ msgid ""
 ":class:`~odoo.fields.One2many` to the :ref:`reference/views` defined for "
 "the model"
 msgstr ""
+"与 :ref:`reference/views` 是 :class:`~odoo.fields.One2many` 的关系,定义模型 "
 
 #: ../../content/developer/api/external_api.rst:879
 msgid "``access_ids``"
@@ -638,46 +685,52 @@ msgid ""
 ":class:`~odoo.fields.One2many` relation to the "
 ":ref:`reference/security/acl` set on the model"
 msgstr ""
+"与 :ref:`reference/security/acl` 是 :class:`~odoo.fields.One2many` 的关系,"
+"设置在模型上"
 
 #: ../../content/developer/api/external_api.rst:881
 msgid "``ir.model`` can be used to"
-msgstr ""
+msgstr "``ir.model`` 可以被用来"
 
 #: ../../content/developer/api/external_api.rst:883
 msgid ""
 "Query the system for installed models (as a precondition to operations on"
 " the model or to explore the system's content)."
 msgstr ""
+"查询系统中的加载的模型(作为操作模型或导出系统内容的前提)"
 
 #: ../../content/developer/api/external_api.rst:885
 msgid ""
 "Get information about a specific model (generally by listing the fields "
 "associated with it)."
 msgstr ""
+"获取特定模型的信息(通常通过列出与它相关的字段)"
 
 #: ../../content/developer/api/external_api.rst:887
 msgid "Create new models dynamically over RPC."
-msgstr ""
+msgstr "通过RPC动态创建新模型"
 
 #: ../../content/developer/api/external_api.rst:890
 msgid "Custom model names must start with ``x_``."
-msgstr ""
+msgstr "自定义模型名称必须以 ``x_`` 开始."
 
 #: ../../content/developer/api/external_api.rst:891
 msgid ""
 "The ``state`` must be provided and set to ``manual``, otherwise the model"
 " will not be loaded."
 msgstr ""
+"``state`` 必须提供和设置 ``manual``,否则模型被会被加载."
 
 #: ../../content/developer/api/external_api.rst:893
 msgid "It is not possible to add new *methods* to a custom model, only fields."
-msgstr ""
+msgstr "不可能为自定义model添加 *方法* ,只能添加字段."
 
 #: ../../content/developer/api/external_api.rst:897
 msgid ""
 "A custom model will initially contain only the \"built-in\" fields "
 "available on all models:"
 msgstr ""
+"自定义的模型最初只能包含所有模型都可用的 \"内置\" 字段:"
 
 #: ../../content/developer/api/external_api.rst:992
 msgid "``ir.model.fields``"
