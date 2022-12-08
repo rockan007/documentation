@@ -741,6 +741,7 @@ msgid ""
 "Provides information about the fields of Odoo models and allows adding "
 "custom fields without using Python code."
 msgstr ""
+"提供Odoo模型字段的信息,允许使不使用Python代码添加自定义字段."
 
 #: ../../content/developer/api/external_api.rst:998
 #: ../../content/developer/reference/backend/actions.rst:229
@@ -753,10 +754,12 @@ msgid ""
 ":class:`~odoo.fields.Many2one` to "
 ":ref:`reference/webservice/inspection/models` to which the field belongs"
 msgstr ""
+"与字段所属的 :ref:`reference/webservice/inspection/models` 是 :class:`~odoo.fields.Many2one` 关系"
+
 
 #: ../../content/developer/api/external_api.rst:1001
 msgid "the field's technical name (used in ``read`` or ``write``)"
-msgstr ""
+msgstr "字段的技术名称(用案例 ``read`` 或 ``write`` )"
 
 #: ../../content/developer/api/external_api.rst:1002
 msgid "``field_description``"
@@ -764,7 +767,7 @@ msgstr ""
 
 #: ../../content/developer/api/external_api.rst:1003
 msgid "the field's user-readable label (e.g. ``string`` in ``fields_get``)"
-msgstr ""
+msgstr "字段的可读标签(例如: ``fields_get`` 中的 ``string``)"
 
 #: ../../content/developer/api/external_api.rst:1004
 msgid "``ttype``"
@@ -772,13 +775,14 @@ msgstr ""
 
 #: ../../content/developer/api/external_api.rst:1005
 msgid "the :ref:`type <reference/orm/fields>` of field to create"
-msgstr ""
+msgstr "要创建字段的 :ref:`type <reference/orm/fields>`"
 
 #: ../../content/developer/api/external_api.rst:1007
 msgid ""
 "whether the field was created via Python code (``base``) or via "
 "``ir.model.fields`` (``manual``)"
 msgstr ""
+"无论字段是通过Python代码( ``base`` )还是通过 ``ir.model.fields`` ( ``人工`` )"
 
 #: ../../content/developer/api/external_api.rst:1009
 msgid "``required``, ``readonly``, ``translate``"
@@ -786,7 +790,7 @@ msgstr ""
 
 #: ../../content/developer/api/external_api.rst:1010
 msgid "enables the corresponding flag on the field"
-msgstr ""
+msgstr "在字段上启用相应的标志"
 
 #: ../../content/developer/api/external_api.rst:1012
 #: ../../content/developer/reference/backend/data.rst:226
@@ -804,6 +808,8 @@ msgid ""
 ":ref:`field-level access control <reference/security/fields>`, a "
 ":class:`~odoo.fields.Many2many` to ``res.groups``"
 msgstr ""
+":ref:`field-level access control <reference/security/fields>` ,"
+"与 ``res.groups`` 是 :class:`~odoo.fields.Many2many` 关系."
 
 #: ../../content/developer/api/external_api.rst:1016
 msgid ""
@@ -816,22 +822,27 @@ msgid ""
 "type-specific properties and customizations, see :ref:`the fields "
 "documentation <reference/orm/fields>` for details"
 msgstr ""
+"类型特定的属性,详情查看 :ref:`the fields "
+"documentation <reference/orm/fields>` for details"
 
 #: ../../content/developer/api/external_api.rst:1019
 msgid ""
 "Like custom models, only new fields created with ``state=\"manual\"`` are"
 " activated as actual fields on the model."
 msgstr ""
+"与自定义模型类似,只有使用 ``state=\"manual\"`` 创建的字段,"
+"才能够作为模型的实际字段被激活."
 
 #: ../../content/developer/api/external_api.rst:1021
 msgid ""
 "Computed fields can not be added via ``ir.model.fields``, some field "
 "meta-information (defaults, onchange) can not be set either."
 msgstr ""
+"计算字段不能够通过 ``ir.model.fields`` 添加,同时也不能设置某些些字段元信息(deaults,onchange)"
 
 #: ../../content/developer/api/extract_api.rst:5
 msgid "Extract API"
-msgstr ""
+msgstr "提取API"
 
 #: ../../content/developer/api/extract_api.rst:7
 msgid ""
@@ -842,6 +853,9 @@ msgid ""
 "lines. More functional information can be found on the `demo page "
 "<https://www.odoo.com/page/invoice-automation>`_."
 msgstr ""
+"Odoo提供的服务允许你自动处理您的发票.服务通过光学字符识别(OCR)引擎,然后使用基于AI的算法"
+"提取要查找的类似总计,截止日期或发票行的字段.更多功能信息可以在"
+" `demo page <https://www.odoo.com/page/invoice-automation>`_ 找到."
 
 #: ../../content/developer/api/extract_api.rst:11
 msgid ""
@@ -849,6 +863,9 @@ msgid ""
 " credit. Three different sized packs can be bought on `iap.odoo.com "
 "<https://iap.odoo.com/iap/in-app-services/259?sortby=date>`_."
 msgstr ""
+"此服务为付费服务.每张发票都会产生花费. 可以在"
+" `iap.odoo.com <https://iap.odoo.com/iap/in-app-services/259?sortby=date>`_ "
+"上选择购买不同的套餐."
 
 #: ../../content/developer/api/extract_api.rst:13
 msgid ""
@@ -856,20 +873,23 @@ msgid ""
 "through the API. The Extract API which is detailed in the next section "
 "allows you to integrate our service directly into your own projects."
 msgstr ""
+"你可以直接在 Odoo账户App或者通过API使用服务."
+"Extract API,允许你直接集成到你自己的项目上,在下一节会详细介绍."
 
 #: ../../content/developer/api/extract_api.rst:17
 msgid "Invoices"
-msgstr ""
+msgstr "发票"
 
 #: ../../content/developer/api/extract_api.rst:18
 msgid ""
 "The extract API use the JSON-RPC2_ protocol. The diffent routes are "
 "located at the following address: **https://iap-extract.odoo.com**."
 msgstr ""
+"检出API使用 JSON-RPC2_ 协议.不同的路可以在以下地址: **https://iap-extract.odoo.com** 找到."
 
 #: ../../content/developer/api/extract_api.rst:21
 msgid "Expected successful flow"
-msgstr ""
+msgstr "预期成功流程"
 
 #: ../../content/developer/api/extract_api.rst:23
 msgid ""
@@ -877,6 +897,8 @@ msgid ""
 " (one call for each invoice). On success, you receive a `document_id` in "
 "the response."
 msgstr ""
+"调用 :ref:`webservices/extract_api/invoice_parse` 提交你的发票(一次一张发票)."
+"成功后,你会在响应中收到一个 `document_id` ."
 
 #: ../../content/developer/api/extract_api.rst:24
 msgid ""
@@ -884,6 +906,8 @@ msgid ""
 ":ref:`webservices/extract_api/invoice_get_results` to get the document's "
 "parsing status."
 msgstr ""
+"然后你必须定期轮询 :ref:`webservices/extract_api/invoice_get_results` "
+"以获取文档的解析状态."
 
 #: ../../content/developer/api/extract_api.rst:25
 msgid ""
@@ -891,6 +915,8 @@ msgid ""
 ":ref:`webservices/extract_api/invoice_validate` and sending the expected "
 "values. This step is optional but greatly helps the system to improve."
 msgstr ""
+"接收到结果后,你可以使用 :ref:`webservices/extract_api/invoice_validate` 来验证它,"
+"并发送验证后的结果.这步是可选的,但对提升系统有很大帮助."
 
 #: ../../content/developer/api/extract_api.rst:28
 msgid ""
@@ -901,10 +927,14 @@ msgid ""
 "integration testing is provided in the :ref:`integration testing section "
 "<webservices/extract_api/integration_testing>`."
 msgstr ""
+"这三个路由详见 :ref:`section <webservices/extract_api/routes>` ,"
+"它们都使用HTTP POST方法.可以在 :download:`here <extract_api/implementation.py>` "
+"找到完整的Python实现,在 :ref:`integration testing section <webservices/extract_api/integration_testing>` "
+"中找到集成测试的token."
 
 #: ../../content/developer/api/extract_api.rst:34
 msgid "Routes"
-msgstr ""
+msgstr "路由"
 
 #: ../../content/developer/api/extract_api.rst:39
 msgid "``/iap/invoice_extract/parse``"
@@ -941,19 +971,21 @@ msgstr ""
 #: ../../content/developer/reference/frontend/services.rst:738
 #: ../../content/developer/reference/frontend/services.rst:853
 msgid "Description"
-msgstr ""
+msgstr "描述"
 
 #: ../../content/developer/api/extract_api.rst:43
 msgid ""
 "Request a processing of the document from the OCR. The route will return "
 "a `document_id` you can use to obtain the result of your request."
 msgstr ""
+"从OCR请求处理文档.路由会返回一个 `document_id` ,"
+"你可以用它来请求数据."
 
 #: ../../content/developer/api/extract_api.rst:46
 #: ../../content/developer/api/extract_api.rst:149
 #: ../../content/developer/api/extract_api.rst:364
 msgid "Request Body"
-msgstr ""
+msgstr "请求体"
 
 #: ../../content/developer/api/extract_api.rst:48
 #: ../../content/developer/api/extract_api.rst:151
@@ -963,7 +995,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:49
 msgid "Must be exactly “2.0”."
-msgstr ""
+msgstr "必须是 \"2.0\""
 
 #: ../../content/developer/api/extract_api.rst:50
 #: ../../content/developer/api/extract_api.rst:153
@@ -973,7 +1005,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:51
 msgid "Must be “call”."
-msgstr ""
+msgstr "必须是 \"call\"."
 
 #: ../../content/developer/api/extract_api.rst:52
 #: ../../content/developer/api/extract_api.rst:155
@@ -986,6 +1018,8 @@ msgid ""
 "track of which response goes with which request. This makes asynchronous "
 "calls easier."
 msgstr ""
+"客户端建立的标识符.它允许客户端追踪哪个响应对应哪个请求."
+"它使得异步调用更容易."
 
 #: ../../content/developer/api/extract_api.rst:76
 #: ../../content/developer/api/extract_api.rst:374
@@ -1001,6 +1035,7 @@ msgid ""
 "The token of the account from which credits will be taken. Each "
 "successful call costs one token."
 msgstr ""
+"将获得贷记的账户token.每次成功的回调会消耗一个token."
 
 #: ../../content/developer/api/extract_api.rst:58
 msgid "``version`` (optional)"
@@ -1013,6 +1048,8 @@ msgid ""
 "For the current version 1.2.0, send ‘120’. If not specified, the latest "
 "version will be used."
 msgstr ""
+"版本决定了你的请求和服务响应的格式.在旧版本中,可能获取不到某些结果."
+"对于当前版本1.2.0,发送120.如果没有特别指定,将使用最新版本."
 
 #: ../../content/developer/api/extract_api.rst:62
 msgid "``documents`` (required)"
@@ -1027,6 +1064,9 @@ msgid ""
 "legacy reasons. The supported extensions are *pdf*, *png*, *jpg* and "
 "*bmp*."
 msgstr ""
+"发票必须以ASCII解析的字符串提供.列表只能包含一个字符串.如果提供了多个字符串,"
+"只有第一个会转换为pdf.如果没有生成pdf,将会处理第一个字符串.此字段是仅出于遗留原因的列表."
+"支持的扩展有 *pdf* , *png* , *jpg* 和 *bmp* ."
 
 #: ../../content/developer/api/extract_api.rst:76
 msgid "``user_infos`` (required)"
@@ -1038,6 +1078,7 @@ msgid ""
 "information is not required in order for the service to work but it "
 "greatly improves the quality of the result."
 msgstr ""
+"有关发票收件人的信息.此信息不是服务所必须的,但它极大的提高了结果的质量."
 
 #: ../../content/developer/api/extract_api.rst:67
 msgid "``user_company_vat`` (optional)"
@@ -1045,7 +1086,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:68
 msgid "VAT number of the client."
-msgstr ""
+msgstr "客户VAT数量"
 
 #: ../../content/developer/api/extract_api.rst:69
 msgid "``user_company_name`` (optional)"
@@ -1053,7 +1094,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:70
 msgid "Name of the client’s company."
-msgstr ""
+msgstr "客户的公司名称"
 
 #: ../../content/developer/api/extract_api.rst:71
 msgid "``user_company_country_code`` (optional)"
@@ -1064,6 +1105,8 @@ msgid ""
 "Country code of the client. Format: `ISO3166 alpha-2 "
 "<https://www.iban.com/country-codes>`_."
 msgstr ""
+"客户的国家代码. 格式: `ISO3166 alpha-2 "
+"<https://www.iban.com/country-codes>`_."
 
 #: ../../content/developer/api/extract_api.rst:73
 msgid "``user_lang`` (optional)"
@@ -1074,6 +1117,8 @@ msgid ""
 "The client language. Format: *language_code + _ + locale* (ex: fr_FR, "
 "en_US)."
 msgstr ""
+"客户语言,格式:*language_code + _ + locale* (ex: fr_FR, "
+"en_US)."
 
 #: ../../content/developer/api/extract_api.rst:76
 msgid "``user_email`` (optional)"
@@ -1081,14 +1126,14 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:76
 msgid "The client email."
-msgstr ""
+msgstr "客户email"
 
 #: ../../content/developer/api/extract_api.rst:100
 #: ../../content/developer/api/extract_api.rst:177
 #: ../../content/developer/api/extract_api.rst:465
 #: ../../content/developer/reference/backend/http.rst:81
 msgid "Response"
-msgstr ""
+msgstr "响应"
 
 #: ../../content/developer/api/extract_api.rst:102
 #: ../../content/developer/api/extract_api.rst:179
@@ -1101,6 +1146,7 @@ msgid ""
 "A string specifying the version of the JSON-RPC protocol. It will be "
 "“2.0”."
 msgstr ""
+"指定JSON-RPC协议版本的字符串,\"2.0\"."
 
 #: ../../content/developer/api/extract_api.rst:104
 #: ../../content/developer/api/extract_api.rst:181
@@ -1116,7 +1162,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:105
 msgid "The identifier you set in the request body."
-msgstr ""
+msgstr "请求体的标识符"
 
 #: ../../content/developer/api/extract_api.rst:112
 #: ../../content/developer/api/extract_api.rst:191
@@ -1155,13 +1201,14 @@ msgstr ""
 #: ../../content/developer/api/extract_api.rst:112
 #: ../../content/developer/api/extract_api.rst:191
 msgid "Only present if the request is successful."
-msgstr ""
+msgstr "只在请求成功时返回."
 
 #: ../../content/developer/api/extract_api.rst:114
 msgid ""
 "The API does not actually use the JSON-RPC error scheme. Instead the API "
 "has its own error scheme bundled inside a successful JSON-RPC result."
 msgstr ""
+"这个API实际上并未使用 JSON-RPC 错误机制.相反它在JSON-RPC成功结果里构建了自己的错误机制."
 
 #: ../../content/developer/api/extract_api.rst:117
 #: ../../content/developer/api/extract_api.rst:196
@@ -1186,7 +1233,7 @@ msgstr ""
 #: ../../content/developer/api/extract_api.rst:198
 #: ../../content/developer/api/extract_api.rst:480
 msgid "Success"
-msgstr ""
+msgstr "成功"
 
 #: ../../content/developer/api/extract_api.rst:120
 #: ../../content/developer/api/extract_api.rst:200
@@ -1196,7 +1243,7 @@ msgstr ""
 #: ../../content/developer/api/extract_api.rst:120
 #: ../../content/developer/api/extract_api.rst:200
 msgid "An error occurred"
-msgstr ""
+msgstr "发生错误"
 
 #: ../../content/developer/api/extract_api.rst:121
 msgid "3"
@@ -1204,7 +1251,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:121
 msgid "You don't have enough credit"
-msgstr ""
+msgstr "余额不足"
 
 #: ../../content/developer/api/extract_api.rst:122
 #: ../../content/developer/howtos/rdtraining/C_data.rst:185
@@ -1215,7 +1262,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:122
 msgid "Unsupported file format"
-msgstr ""
+msgstr "未支持文件格式"
 
 #: ../../content/developer/api/extract_api.rst:123
 #: ../../content/developer/api/extract_api.rst:201
@@ -1225,7 +1272,7 @@ msgstr ""
 #: ../../content/developer/api/extract_api.rst:123
 #: ../../content/developer/api/extract_api.rst:201
 msgid "Server is currently under maintenance. Please try again later."
-msgstr ""
+msgstr "服务正在维护.请稍后重试."
 
 #: ../../content/developer/api/extract_api.rst:142
 msgid "``/iap/invoice_extract/get_results``"
