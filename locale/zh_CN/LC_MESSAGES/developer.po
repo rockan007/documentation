@@ -1284,6 +1284,8 @@ msgid ""
 "<webservices/extract_api/invoice_parse>` route. Can either return the "
 "results or a \"request pending\" message."
 msgstr ""
+"通过 :ref:`/parse <webservices/extract_api/invoice_parse>` 路由获取文档id的请求结果."
+"可能返回结果,或者返回一个 \"request pending\" 消息."
 
 #: ../../content/developer/api/extract_api.rst:152
 #: ../../content/developer/api/extract_api.rst:154
@@ -1315,10 +1317,12 @@ msgid ""
 "The list of ``document_id`` for which you want to get the current parsing"
 " status."
 msgstr ""
+"要获取当前解析状态的 ``document_id`` 列表."
 
 #: ../../content/developer/api/extract_api.rst:184
 msgid "Dictionary where each key is a document_id. For each ``document_id``:"
 msgstr ""
+"每个key都是一个document_id的字典.对于每个 ``document_id`` :"
 
 #: ../../content/developer/api/extract_api.rst:191
 msgid "``results``"
@@ -1329,6 +1333,7 @@ msgid ""
 "result keys are strings despite the fact that the document_ids given in "
 "the request body are integers."
 msgstr ""
+"结果的键都是字符串,尽管实际上返回体返回的document_ids是整数."
 
 #: ../../content/developer/api/extract_api.rst:199
 #: ../../content/developer/howtos/rdtraining/C_data.rst:185
@@ -1350,12 +1355,15 @@ msgid ""
 "total or the due date are also called features. An exhaustive list of all"
 " the extracted features can be found in the table below."
 msgstr ""
+"我们想从发票中获得的每个字段,例如total或过期日期,也被称为特征."
+"下表列出了所有提取的特征的详尽信息."
 
 #: ../../content/developer/api/extract_api.rst:238
 msgid ""
 "For each feature, we return a list of candidates and we spotlight the "
 "candidate our model predicts to be the best fit for the feature."
 msgstr ""
+"对于每个特征,我们会返回一个候选列表，并突出显示我们的模型预测的最适合该特征的候选."
 
 #: ../../content/developer/api/extract_api.rst:240
 msgid "``selected_value``"
@@ -1363,7 +1371,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:241
 msgid "The best candidate for this feature."
-msgstr ""
+msgstr "此特征的最优候选"
 
 #: ../../content/developer/api/extract_api.rst:243
 msgid "``words``"
@@ -1371,7 +1379,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:243
 msgid "List of all the candidates for this feature ordered by decreasing score."
-msgstr ""
+msgstr "特征的所有候选列表以降序排列"
 
 #: ../../content/developer/api/extract_api.rst:255
 msgid "``candidate``"
@@ -1382,6 +1390,7 @@ msgid ""
 "For each candidate we give its representation and position in the "
 "document. Candidates are sorted by decreasing order of suitability."
 msgstr ""
+"对于每个候选,我们会在文档中给出说明和位置"
 
 #: ../../content/developer/api/extract_api.rst:259
 msgid "``content``"
@@ -1389,7 +1398,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:260
 msgid "Representation of the candidate."
-msgstr ""
+msgstr "候选说明"
 
 #: ../../content/developer/api/extract_api.rst:262
 msgid "``coords``"
@@ -1401,6 +1410,8 @@ msgid ""
 " dimensions are relative to the size of the page and are therefore "
 "between 0 and 1. The angle is a clockwise rotation measured in degrees."
 msgstr ""
+"``[center_x, center_y, width, height, rotation_angle]``.位置和方向与页面的大小有关,位于0和1之间."
+"角度是以度为单位一个顺时针旋转的角度数."
 
 #: ../../content/developer/api/extract_api.rst:265
 #: ../../content/developer/reference/backend/data.rst:253
@@ -1412,14 +1423,15 @@ msgid ""
 "Page of the original document on which the candidate is located (starts "
 "at 0)."
 msgstr ""
+"候选所在的原始文档页码(从0开始)."
 
 #: ../../content/developer/api/extract_api.rst:277
 msgid "Feature name"
-msgstr ""
+msgstr "特征名称"
 
 #: ../../content/developer/api/extract_api.rst:277
 msgid "Specifities"
-msgstr ""
+msgstr "规格"
 
 #: ../../content/developer/api/extract_api.rst:279
 msgid "``SWIFT_code``"
@@ -1427,13 +1439,14 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:279
 msgid "**content** is a dictionary encoded as a string."
-msgstr ""
+msgstr "**content** 是一个解析字符串的字典."
 
 #: ../../content/developer/api/extract_api.rst:281
 msgid ""
 "It contains information about the detected SWIFT code (or `BIC "
 "<https://www.iso9362.org/isobic/overview.html>`_)."
 msgstr ""
+"它包含关于检测到的SWIFT代码(或者 `BIC <https://www.iso9362.org/isobic/overview.html>`_ )的信息"
 
 #: ../../content/developer/api/extract_api.rst:284
 msgid "Keys:"
@@ -1445,7 +1458,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:287
 msgid "detected BIC (string)."
-msgstr ""
+msgstr "检测到的BIC(字符串)"
 
 #: ../../content/developer/api/extract_api.rst:288
 #: ../../content/developer/reference/backend/views.rst:632
@@ -1455,7 +1468,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:289
 msgid "bank name (string)."
-msgstr ""
+msgstr "银行名称"
 
 #: ../../content/developer/api/extract_api.rst:290
 msgid "``country_code``"
@@ -1463,7 +1476,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:291
 msgid "ISO3166 alpha-2 country code of the bank (string)."
-msgstr ""
+msgstr "银行的ISO3166 alpha-2 国家代码(字符串)"
 
 #: ../../content/developer/api/extract_api.rst:292
 msgid "``city`` (optional)"
@@ -1471,7 +1484,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:293
 msgid "city of the bank (string)."
-msgstr ""
+msgstr "银行所在城市(字符串)"
 
 #: ../../content/developer/api/extract_api.rst:295
 msgid "``verified_bic``"
@@ -1479,11 +1492,11 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:295
 msgid "True if the BIC has been found in our DB (bool)."
-msgstr ""
+msgstr "如或在DB中查找到了BIC,会返回True(bool)."
 
 #: ../../content/developer/api/extract_api.rst:297
 msgid "Name and city are present only if verified_bic is true."
-msgstr ""
+msgstr "只有在verified_bic为true时,才会有银行名称和所在城市."
 
 #: ../../content/developer/api/extract_api.rst:299
 msgid "``VAT_Number``"
@@ -1496,7 +1509,7 @@ msgstr ""
 #: ../../content/developer/api/extract_api.rst:319
 #: ../../content/developer/api/extract_api.rst:325
 msgid "**content** is a string"
-msgstr ""
+msgstr "**content** 是一个字符串"
 
 #: ../../content/developer/api/extract_api.rst:301
 msgid "``country``"
@@ -1512,7 +1525,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:307
 msgid "Format : *YYYY-MM-DD HH:MM:SS*"
-msgstr ""
+msgstr "格式: *YYYY-MM-DD HH:MM:SS*"
 
 #: ../../content/developer/api/extract_api.rst:309
 msgid "``due_date``"
@@ -1520,7 +1533,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:309
 msgid "Same as for ``date``"
-msgstr ""
+msgstr "与 ``date`` 相同"
 
 #: ../../content/developer/api/extract_api.rst:311
 msgid "``global_taxes``"
@@ -1531,17 +1544,19 @@ msgstr ""
 #: ../../content/developer/api/extract_api.rst:321
 #: ../../content/developer/api/extract_api.rst:323
 msgid "**content** is a float"
-msgstr ""
+msgstr "**content** 是个浮点类型"
 
 #: ../../content/developer/api/extract_api.rst:313
 msgid ""
 "**candidate** has an additional field ``amount_type``. Its value is "
 "always percent."
 msgstr ""
+"**候选** 会有一个附加字段 ``amount_type`` ."
+"它的值总是个百分数."
 
 #: ../../content/developer/api/extract_api.rst:315
 msgid "**selected_values** is a list of candidates."
-msgstr ""
+msgstr "**selected_values** 是个候选列表"
 
 #: ../../content/developer/api/extract_api.rst:317
 msgid "``global_taxes_amount``"
@@ -1565,7 +1580,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:329
 msgid "``feature_result`` for the ``invoice_lines`` feature"
-msgstr ""
+msgstr "``invoice_lines`` 特征的 ``feature_result`` "
 
 #: ../../content/developer/api/extract_api.rst:331
 msgid ""
@@ -1575,6 +1590,8 @@ msgid ""
 ":ref:`webservices/extract_api/invoice_get_results/feature_result` "
 "structure."
 msgstr ""
+"它遵循一个更特别的结构.它基本上是一个字典的列表,每个字典表示一个发票行."
+"每个值都遵循 :ref:`webservices/extract_api/invoice_get_results/feature_result` 结构."
 
 #: ../../content/developer/api/extract_api.rst:356
 msgid "``/iap/invoice_extract/validate``"
@@ -1589,6 +1606,9 @@ msgid ""
 "improve its prediction accuracy for the invoices you will send in the "
 "future."
 msgstr ""
+"此路由验证一张发票的不同特征.验证步骤是个可选但强烈推荐的步骤."
+"通过告诉系统每个特征是否正确,您可以提供重要的反馈."
+"它虽然没有直接的影响,但它帮助系统极大的改进了它对将来你要上传的发票的检测的准确性."
 
 #: ../../content/developer/api/extract_api.rst:371
 msgid "``documents_id`` (required)"
@@ -1596,7 +1616,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:372
 msgid "Id of the document for which you want to validate the result."
-msgstr ""
+msgstr "你要验证结果的文档id"
 
 #: ../../content/developer/api/extract_api.rst:374
 #: ../../content/developer/reference/backend/views.rst:1501
@@ -1609,6 +1629,7 @@ msgid ""
 "Contains the validation for each feature. The field ``merged_line`` "
 "indicates if the ``invoice_lines`` have been merged or not."
 msgstr ""
+"包含每个特征的验证结果.字段 ``merged_line`` 表明了 ``invoice_lines`` 是否合并. "
 
 #: ../../content/developer/api/extract_api.rst:376
 msgid ""
@@ -1618,6 +1639,8 @@ msgid ""
 "times for a same invoice. Therefore you should validate all the features "
 "you want to validate at once."
 msgstr ""
+"虽然不必为了验证是否成功而验证所有特征.然而 :ref:`/validate <webservices/extract_api/invoice_validate>` "
+"只能对同一张发票调用一次.因此,你应该一次性验证所有要验证的特征."
 
 #: ../../content/developer/api/extract_api.rst:398
 msgid "``validation``"
@@ -1630,14 +1653,17 @@ msgid ""
 " format apply for all the features except for ``global_taxes`` and "
 "``invoice_lines`` which have more complex validation format."
 msgstr ""
+"对于给定的特征的 **验证** 包含给定特征期望值的文字说明."
+"除了 ``global_taxes`` 和 `invoice_lines`` 这两个有更复杂的验证格式外, "
+"此格式适用所有特征."
 
 #: ../../content/developer/api/extract_api.rst:409
 msgid "validation for ``global_taxes``"
-msgstr ""
+msgstr "``global_taxes``验证"
 
 #: ../../content/developer/api/extract_api.rst:411
 msgid "**content** is a list of dictionaries. Each dictionary represents a tax:"
-msgstr ""
+msgstr "**内容** 是一个字典列表.每个字典表示一个税率."
 
 #: ../../content/developer/api/extract_api.rst:413
 msgid "``amount``"
@@ -1645,7 +1671,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:414
 msgid "Amount on which the tax is applied."
-msgstr ""
+msgstr "征税的金额."
 
 #: ../../content/developer/api/extract_api.rst:415
 msgid "``tax_amount``"
@@ -1653,7 +1679,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:416
 msgid "Amount of the tax."
-msgstr ""
+msgstr "税额."
 
 #: ../../content/developer/api/extract_api.rst:417
 msgid "``tax_amount_type``"
@@ -1664,6 +1690,8 @@ msgid ""
 "Indicates if the ``tax_amount`` is a percentage or a fixed value. The "
 "type must be specified using the literal string \"fixed\" or \"percent\"."
 msgstr ""
+"表明 ``tax_amount`` 是个百分比或者固定值."
+"必须使用字面字符串指定值, \"fixed\"或\"percent\"."
 
 #: ../../content/developer/api/extract_api.rst:420
 msgid "``tax_price_include``"
@@ -1671,17 +1699,19 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:420
 msgid "Indicates if ``amount`` already contains the tax or not."
-msgstr ""
+msgstr "表明 ``amount`` 是否包含税"
 
 #: ../../content/developer/api/extract_api.rst:436
 msgid "validation for ``invoice_lines``"
-msgstr ""
+msgstr "``invoice_lines`` 验证"
 
 #: ../../content/developer/api/extract_api.rst:438
 msgid ""
 "**lines** is a list of dictionaries. Each dictionary represents an "
 "invoice line. The dictionary keys speak for themselves."
 msgstr ""
+"**lines** 是个字典列表.每个字典表示一个发票行."
+"字典键值不言而喻"
 
 #: ../../content/developer/api/extract_api.rst:481
 msgid "12"
@@ -1689,12 +1719,12 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:481
 msgid "Validation format is incorrect"
-msgstr ""
+msgstr "验证格式不正确"
 
 #: ../../content/developer/api/extract_api.rst:500
 #: ../../content/developer/reference/backend/testing.rst:535
 msgid "Integration Testing"
-msgstr ""
+msgstr "集成测试"
 
 #: ../../content/developer/api/extract_api.rst:502
 msgid ""
@@ -1702,6 +1732,8 @@ msgid ""
 "``account_token`` in the :ref:`/parse "
 "<webservices/extract_api/invoice_parse>` request."
 msgstr ""
+"你可以在 ref:`/parse <webservices/extract_api/invoice_parse>` 请求中""
+"使用 *integration_token* 作为 ``acount_token`` 来集成测试."
 
 #: ../../content/developer/api/extract_api.rst:504
 msgid ""
@@ -1709,6 +1741,8 @@ msgid ""
 "entire flow without really parsing a document and without being billed "
 "one credit for each successful invoice parsing."
 msgstr ""
+"使用此token可让您进入测试模式并允许你不必真正解析一个文档来模拟整个流程,"
+"同时也不必为每个发票解析花费."
 
 #: ../../content/developer/api/extract_api.rst:506
 msgid ""
@@ -1717,16 +1751,20 @@ msgid ""
 ":ref:`/get_results <webservices/extract_api/invoice_get_results>` is a "
 "hard-coded one."
 msgstr ""
+"在测试模式下唯一的技术上的区别是你发送的文档不是通过系统解析的,"
+"获取到的响应是硬编码的 :ref:`/get_results <webservices/extract_api/invoice_get_results>` ." 
 
 #: ../../content/developer/api/extract_api.rst:509
 msgid ""
 "A python implementation of the full flow can be found :download:`here "
 "<extract_api/implementation.py>`."
 msgstr ""
+"全流程的python实现可以在这里找到"
+" :download:`here <extract_api/implementation.py>` ."
 
 #: ../../content/developer/api/iap.rst:6
 msgid "In-App Purchase"
-msgstr ""
+msgstr "App内购买"
 
 #: ../../content/developer/api/iap.rst:8
 msgid ""
@@ -1734,22 +1772,26 @@ msgid ""
 "apps to be compensated for ongoing service use rather than — and possibly"
 " instead of — a sole initial purchase."
 msgstr ""
+"App内购买(IAP)允许持续服务的提供者通过Odoo应用通过持续服务"
+"——也可能不是——单独的初次购买而获得补偿."
 
 #: ../../content/developer/api/iap.rst:12
 msgid ""
 "In that context, Odoo acts mostly as a *broker* between a client and an "
 "Odoo App Developer:"
 msgstr ""
+"在那种情况下,Odoo主要充当客户和Odoo应用程序开发人员之间的 *经纪人* :"
 
 #: ../../content/developer/api/iap.rst:15
 msgid "Users purchase service tokens from Odoo."
-msgstr ""
+msgstr "用户从 Odoo 购买服务令牌."
 
 #: ../../content/developer/api/iap.rst:16
 msgid ""
 "Service providers draw tokens from the user's Odoo account when service "
 "is requested."
 msgstr ""
+"服务提供者在请求服务时从用户的Odoo账户中提取令牌."
 
 #: ../../content/developer/api/iap.rst:21
 msgid ""
@@ -1757,6 +1799,8 @@ msgid ""
 "latter, which can be done either via direct JSON-RPC2_ or if you are "
 "using Odoo using the convenience helpers it provides."
 msgstr ""
+"本文档适用于 *服务提供商*,并介绍了后者,这可以直接通过 JSON-RPC2_ 完成,"
+"或者如果你使用Odoo使用它提供的便利助手."
 
 #: ../../content/developer/api/iap.rst:26
 #: ../../content/developer/reference/frontend/javascript_reference.rst:18
