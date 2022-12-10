@@ -1035,7 +1035,7 @@ msgid ""
 "The token of the account from which credits will be taken. Each "
 "successful call costs one token."
 msgstr ""
-"将获得贷记的账户token.每次成功的回调会消耗一个token."
+"将获得credits的账户token.每次成功的回调会消耗一个token."
 
 #: ../../content/developer/api/extract_api.rst:58
 msgid "``version`` (optional)"
@@ -1659,7 +1659,7 @@ msgstr ""
 
 #: ../../content/developer/api/extract_api.rst:409
 msgid "validation for ``global_taxes``"
-msgstr "``global_taxes``验证"
+msgstr "``global_taxes`` 验证"
 
 #: ../../content/developer/api/extract_api.rst:411
 msgid "**content** is a list of dictionaries. Each dictionary represents a tax:"
@@ -1814,27 +1814,30 @@ msgstr ""
 #: ../../content/developer/reference/frontend/services.rst:760
 #: ../../content/developer/reference/frontend/services.rst:835
 msgid "Overview"
-msgstr ""
+msgstr "概述"
 
 #: ../../content/developer/api/iap.rst:31
 msgid "The Players"
-msgstr ""
+msgstr "玩家"
 
 #: ../../content/developer/api/iap.rst:33
 msgid ""
 "The Service Provider is (probably) you the reader, you will be providing "
 "value to the client in the form of a service paid per-use."
 msgstr ""
+"服务提供者通常是读者您,您将以按使用付费的服务形式为客户提供价值."
 
 #: ../../content/developer/api/iap.rst:35
 msgid "The Client installed your Odoo App, and from there will request services."
-msgstr ""
+msgstr "客户从安装的你的Odoo App中获取服务,"
 
 #: ../../content/developer/api/iap.rst:36
 msgid ""
 "Odoo brokers crediting, the Client adds credit to their account, and you "
 "can draw credits from there to provide services."
 msgstr ""
+"Odoo 经纪人crediting,客户向他们的账户中添加credit,"
+"你可以从那里draw credits来提供服务."
 
 #: ../../content/developer/api/iap.rst:38
 msgid ""
@@ -1842,16 +1845,20 @@ msgid ""
 "service directly, or you can delegate the actual service acting as a "
 "bridge/translator between an Odoo system and the actual service."
 msgstr ""
+"外部服务是可选的: *你* 可以直接提供服务,"
+"或者可以将实际服务作为Odoo系统和实际服务之间的bridge/translator"
 
 #: ../../content/developer/api/iap.rst:46
 msgid "The Credits"
-msgstr ""
+msgstr "The Credits"
 
 #: ../../content/developer/api/iap.rst:48
 msgid ""
 "The credits went from integer to float value starting **October 2018**. "
 "Integer values are still supported."
 msgstr ""
+"credits在 **2018年十** 开始由整型转换为浮点型."
+"整型值依然受支持." 
 
 #: ../../content/developer/api/iap.rst:51
 msgid ""
@@ -1860,18 +1867,21 @@ msgid ""
 " monetary value depends on the service and is decided by the provider. "
 "This could be:"
 msgstr ""
+"通过IAP平台提供的每个服务可以被客户通过tokens或 *credits* 使用."
+"credits 都是浮点型,它们的货币值取决与服务并由提供商决定."
+"可能是:"
 
 #: ../../content/developer/api/iap.rst:56
 msgid "for an sms service: 1 credit = 1 sms;"
-msgstr ""
+msgstr "对于sms服务: 1 credit = 1 sms"
 
 #: ../../content/developer/api/iap.rst:57
 msgid "for an ad service: 1 credit = 1 ad; or"
-msgstr ""
+msgstr "对于广告服务: 1 credit = 1 ad; 或者"
 
 #: ../../content/developer/api/iap.rst:58
 msgid "for a postage service: 1 credit = 1 post stamp."
-msgstr ""
+msgstr "对于邮寄服务: 1 credit = 1 邮票"
 
 #: ../../content/developer/api/iap.rst:60
 msgid ""
@@ -1879,6 +1889,8 @@ msgid ""
 "palliate the variations of price (e.g. the prices of sms and stamps may "
 "vary following the countries)."
 msgstr ""
+"一个credit也可以简单的与固定的钱数相关联,以适应价格的变化"
+"(例如:sms和邮寄的价格可能在不同国家是不同的)."
 
 #: ../../content/developer/api/iap.rst:64
 msgid ""
@@ -1886,24 +1898,27 @@ msgid ""
 "that the clients can buy on https://iap.odoo.com (see :ref:`Packs <iap-"
 "packages>`)."
 msgstr ""
+"credits的价格是通过credit预付包固定的,用户可以在 https://iap.odoo.com 上购买"
+"(查看 :ref:`Packs <iap-packages>` ).
 
 #: ../../content/developer/api/iap.rst:67
 msgid ""
 "In the following explanations we will ignore the External Service, they "
 "are just a detail of the service you provide."
 msgstr ""
+"在下面的解释中我们将忽略外部服务，它们只是您提供的服务的一个细节"
 
 #: ../../content/developer/api/iap.rst:73
 msgid "'Normal' service flow"
-msgstr ""
+msgstr "'标准' 服务流程"
 
 #: ../../content/developer/api/iap.rst:75
 msgid "If everything goes well, the normal flow is the following:"
-msgstr ""
+msgstr "如果一切顺利,标准流程如下所示:"
 
 #: ../../content/developer/api/iap.rst:77
 msgid "The Client requests a service of some sort."
-msgstr ""
+msgstr "客户请求某种服务."
 
 #: ../../content/developer/api/iap.rst:78
 msgid ""
@@ -1911,12 +1926,13 @@ msgid ""
 "service in the Client's account, and creates a transaction over that "
 "amount."
 msgstr ""
+"服务提供者通过Odoo查询客户的账户是否有足够的credit来获取服务,并为这个账户创建交易."
 
 #: ../../content/developer/api/iap.rst:81
 msgid ""
 "The Service Provider provides the service (either on their own or calling"
 " to External Services)."
-msgstr ""
+msgstr "服务提供者提供服务(不管是他们自己的还是外部服务)"
 
 #: ../../content/developer/api/iap.rst:83
 msgid ""
@@ -1924,6 +1940,7 @@ msgid ""
 "be provided) or cancel (if the service could not be provided) the "
 "transaction created at step 2."
 msgstr ""
+"服务提供者返回Odoo去获取(可以提供服务)或取消(不可提供服务)在第二步创建的交易."
 
 #: ../../content/developer/api/iap.rst:86
 msgid ""
@@ -1931,38 +1948,40 @@ msgid ""
 "been rendered, possibly (depending on the service) displaying or storing "
 "its results in the client's system."
 msgstr ""
+"最终,服务提供这通知客户服务已添加,可能在客户系统中(取决与服务)展示或存储结果."
 
 #: ../../content/developer/api/iap.rst:93
 msgid "Insufficient credits"
-msgstr ""
+msgstr "credits不足"
 
 #: ../../content/developer/api/iap.rst:95
 msgid ""
 "However, if the Client's account lacks credits for the service, the flow "
 "will be as follows:"
-msgstr ""
+msgstr "然而,如果客户账户不足以支付服务,流程会如下所示:"
 
 #: ../../content/developer/api/iap.rst:97
 msgid "The Client requests a service as previously."
-msgstr ""
+msgstr "客户像之前一样请求服务."
 
 #: ../../content/developer/api/iap.rst:98
 msgid ""
 "The Service Provider asks Odoo if there are enough credits on the "
 "Client's account and gets a negative reply."
 msgstr ""
+"服务提供者询问Odoo客户账户中是否有足够的credits,会得到的一个否定的结果."
 
 #: ../../content/developer/api/iap.rst:100
 msgid "This is signaled back to the Client."
-msgstr ""
+msgstr "这个会返回给客户"
 
 #: ../../content/developer/api/iap.rst:101
 msgid "Who is redirected to their Odoo account to credit it and re-try."
-msgstr ""
+msgstr "客户会重定向到他们的Odoo账户,充值后然后重试"
 
 #: ../../content/developer/api/iap.rst:105
 msgid "Building your service"
-msgstr ""
+msgstr "构建您的服务"
 
 #: ../../content/developer/api/iap.rst:107
 msgid ""
@@ -1970,28 +1989,32 @@ msgid ""
 "burning 10 seconds of CPU for a credit. For your own services, you could,"
 " for example:"
 msgstr ""
+"例如,我们将提供的服务是 ~~挖狗狗币~~ 每使用十秒CPU消耗一个credi.t"
+"对于你自己的服务,你可以,举例来说:"
 
 #: ../../content/developer/api/iap.rst:110
 msgid ""
 "provide an online service yourself (e.g. convert quotations to faxes for "
 "business in Japan);"
 msgstr ""
+"提供一个自己的在线服务(例如: 将报价转换为传真以在日本开展业务)."
 
 #: ../../content/developer/api/iap.rst:112
 msgid ""
 "provide an *offline* service yourself (e.g. provide accountancy service);"
 " or"
 msgstr ""
+"提供一个自己的 *离线* 服务 (例如:会计服务) 或者"
 
 #: ../../content/developer/api/iap.rst:113
 msgid ""
 "act as intermediary to an other service provider (e.g. bridge to an MMS "
 "gateway)."
-msgstr ""
+msgstr "充当其他服务提供商的中介(例如:桥接一个MMS网关)."
 
 #: ../../content/developer/api/iap.rst:119
 msgid "Register the service on Odoo"
-msgstr ""
+msgstr "在Odoo中注册服务"
 
 #: ../../content/developer/api/iap.rst:121
 #: ../../content/developer/api/iap.rst:225
@@ -2027,11 +2050,11 @@ msgstr ""
 #: ../../content/developer/reference/frontend/qweb.rst:476
 #: ../../content/developer/reference/frontend/qweb.rst:793 odoo.api:3 of
 msgid "Todo"
-msgstr ""
+msgstr "Todo"
 
 #: ../../content/developer/api/iap.rst:121
 msgid "complete this part with screenshots"
-msgstr ""
+msgstr "使用截屏完成这部分"
 
 #: ../../content/developer/api/iap.rst:123
 msgid ""
