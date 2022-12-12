@@ -2066,6 +2066,9 @@ msgid ""
 "Alternatively, you can go to your portal on Odoo "
 "(https://iap.odoo.com/my/home) and select *In-App Services*."
 msgstr ""
+"在你能够实际的查询你的帐号前,第一步是要在IAP上注册您的服务(生产和/或测试)."
+"为了创建一个服务,在 IAP 端点(生产为:https://iap.odoo.com,测试为:https://iap-sandbox.odoo.com)中找到 *Portal Acccount*,"
+"端点 *独立* 且 *不同步*).或者，您可以转到您在 Odoo 上的门户 (https://iap.odoo.com/my/home) 并选择 *应用内服务* ."
 
 #: ../../content/developer/api/iap.rst:132
 msgid ""
@@ -2073,16 +2076,20 @@ msgid ""
 "be used to manage real transactions. This step is automatically passed "
 "when on sandbox to ease the tests."
 msgstr ""
+"在生产上,在服务能够处理真实的交易前,需要一个人工审核步骤."
+"在沙盒环境中会自动跳过此步骤以简化测试."
 
 #: ../../content/developer/api/iap.rst:136
 msgid ""
 "Log in then go to :menuselection:`My Account --> Your In-App Services`, "
 "click Create and provide the information of your service."
 msgstr ""
+"登录然后找到 menuselection:`My Account --> Your In-App Services` ,"
+"点击创建并提供你的服务的相关信息."
 
 #: ../../content/developer/api/iap.rst:140
 msgid "The service has *seven* important fields:"
-msgstr ""
+msgstr "服务包含 *七个* 重要字段:"
 
 #: ../../content/developer/api/iap.rst:142
 msgid ""
@@ -2091,12 +2098,16 @@ msgid ""
 "transaction from Odoo. (e.g. `self.env['iap.account].get(name)`). As good"
 " practice, this should match the technical name of your app."
 msgstr ""
+":samp:`name` - :class:`ServiceName`: 当请求交易时,你需要在客户端的 :ref:`app <iap-odoo-app>`  "
+"中提供的一个字符串(例如: `self.env['iap.account].get(name)` ). 作为一个良好实践,"
+"它应该与你的app的技术名称相匹配."
 
 #: ../../content/developer/api/iap.rst:147
 msgid ""
 ":samp:`label` - :class:`Label`: The name displayed on the shopping portal"
 " for the client."
 msgstr ""
+":samp:`label` - :class:`Label`: 此名称展示在客户端的购物门户网页上"
 
 #: ../../content/developer/api/iap.rst:152
 msgid ""
@@ -2104,12 +2115,16 @@ msgid ""
 "practice, the :class:`ServiceName` should usually match the name of your "
 "Odoo Client App."
 msgstr ""
+" :class:`ServiceName` 和 :class:`Label` 都是唯一的."
+"作为最佳实践, :class:`ServiceName` 应当与您的Odoo客户端App名称一致."
 
 #: ../../content/developer/api/iap.rst:155
 msgid ""
 ":samp:`icon` - :class:`Icon`: A generic icon that will serve as default "
 "for your :ref:`packs <iap-packages>`."
 msgstr ""
+":samp:`icon` - :class:`Icon`: 一个通用的图标,将作为您的 :ref:`packs <iap-packages>` "
+"的默认图标."
 
 #: ../../content/developer/api/iap.rst:158
 msgid ""
@@ -2118,12 +2133,15 @@ msgid ""
 " from the client's account. It will be shown only once upon creation of "
 "the service and can be regenerated at will."
 msgstr ""
+":samp:`key` - :class:`ServiceKey`: 在IAP(see::ref:`your service <iap-service>`)中标识您的开发者密钥,"
+"并允许提取客户账户中的credits.它只在创建服务时显示一次,可以随时重设."
 
 #: ../../content/developer/api/iap.rst:164
 msgid ""
 "Your :class:`ServiceKey` *is a secret*, leaking your service key allows "
 "other application developers to draw credits bought for your service(s)."
 msgstr ""
+"你的 :class:`ServiceKey` *是个机密* ,泄漏你的服务密钥会导致其他应用开发者提取购买你服务的credits."
 
 #: ../../content/developer/api/iap.rst:168
 msgid ""
@@ -2132,6 +2150,8 @@ msgid ""
 "service will only be available to clients that have an active enterprise "
 "contract."
 msgstr ""
+":samp:`trial credits` - :class:`Float`: 这个对应于你准备对首次使用你app的用户收取的credits."
+"注意这个服务只对拥有活跃的企业账户的客户使用."
 
 #: ../../content/developer/api/iap.rst:172
 msgid ""
@@ -2141,65 +2161,72 @@ msgid ""
 "your service work and inform the client on how they can **access, update "
 "or delete their personal information**."
 msgstr ""
+":samp:`privacy policy` - :class:`PrivacyPolicy`: 这是你服务的隐私政策的url."
+"应该明确的指出 **你手机的信息**, 如何使用这些信息,这些信息是对你的服务的必要性,"
+"并向客提供 **如何访问,更新或者删除他们的个人信息** 的方案."
 
 #: ../../content/developer/api/iap.rst:189
 msgid ""
 "You can then create *credit packs* which clients can purchase in order to"
 " use your service."
 msgstr ""
+"然后你就可以创建 *credit套餐*,让用户购买来使用你的服务."
 
 #: ../../content/developer/api/iap.rst:195
 msgid "Packs"
-msgstr ""
+msgstr "套餐"
 
 #: ../../content/developer/api/iap.rst:197
 msgid "A credit pack is essentially a product with five characteristics:"
-msgstr ""
+msgstr "credit 套餐本质上包含五个方面的产品."
 
 #: ../../content/developer/api/iap.rst:199
 msgid "Name: name of the pack,"
-msgstr ""
+msgstr "Name: 套餐名称,"
 
 #: ../../content/developer/api/iap.rst:200
 msgid ""
 "Icon: specific icon for the pack (if not provided, it will fallback on "
 "the service icon),"
 msgstr ""
+"Icon: 套餐的特定图标(如果未指定,默认为服务的图标)."
 
 #: ../../content/developer/api/iap.rst:201
 msgid ""
 "Description: details on the pack that will appear on the shop page as "
 "well as the invoice,"
 msgstr ""
+"描述:套餐详情,会展示在商品页,以及发票上"
 
 #: ../../content/developer/api/iap.rst:203
 msgid "Amount: amount of credits the client is entitled to when buying the pack,"
-msgstr ""
+msgstr "数量:客户在购买套餐时,有权获得的credits的数量"
 
 #: ../../content/developer/api/iap.rst:204
 msgid "Price: price in EUR (for the time being, USD support is planned)."
-msgstr ""
+msgstr "价格: 欧元价格(当前,已计划支持USD)"
 
 #: ../../content/developer/api/iap.rst:208
 #, python-format
 msgid ""
 "Odoo takes a 25% commission on all pack sales. Adjust your selling price "
 "accordingly."
-msgstr ""
+msgstr "Odoo在所有的套餐售卖中收取25%的佣金.与你的售价相对应."
 
 #: ../../content/developer/api/iap.rst:213
 msgid ""
 "Depending on the strategy, the price per credit may vary from one pack to"
 " another."
 msgstr ""
+"基于这个策略,每个credit的售价在每个套餐中可能就有较大差别."
 
 #: ../../content/developer/api/iap.rst:223
 msgid "Odoo App"
-msgstr ""
+msgstr "Odoo App"
 
 #: ../../content/developer/api/iap.rst:225
 msgid "does this actually require apps?"
-msgstr ""
+msgstr "真的需要apps吗?"
 
 #: ../../content/developer/api/iap.rst:227
 msgid ""
@@ -2208,6 +2235,8 @@ msgid ""
 "you provide. Our app will just add a button to the Partners form which "
 "lets a user request burning some CPU time on the server."
 msgstr ""
+"第二步是开发一个 `Odoo App`_ ,客户可以在他们的Odoo实例中安装它,并通过它使用你提供的服务."
+"我们的app会在Partners中添加一个按钮,让用户获取在服务上消耗的CPU时间."
 
 #: ../../content/developer/api/iap.rst:232
 msgid ""
@@ -2216,6 +2245,8 @@ msgid ""
 "properly set up and we will have access to some necessary views and "
 "useful helpers."
 msgstr ""
+"首先,我们会创建一个依赖于 ``iap`` 的 *odoo 模块* .IAP是一个标准的V11模块,"
+"它确保了一个本地帐号会被创建,并且我们会应获取一些必要视图的访问权限及其他益处."
 
 #: ../../content/developer/api/iap.rst:236
 #: ../../content/developer/api/iap.rst:251
@@ -2229,6 +2260,8 @@ msgid ""
 "provide significant local value via your application and additional parts"
 " via a remote service."
 msgstr ""
+"其次, 集成的 *本地* 方面.虽然我们只是在partners试图中添加了一个action按钮,"
+"但你当然可以通过你的应用提供重要的本地价值以及通过远程服务提供附加部分."
 
 #: ../../content/developer/api/iap.rst:264
 msgid "`coalroller/views/res_partner_views.xml`"
@@ -2239,6 +2272,7 @@ msgid ""
 "We can now implement the action method/callback. This will *call our own "
 "server*."
 msgstr ""
+"我们现在可以实现action的方法/回调了.这会 *调用我们自己的服务* ."
 
 #: ../../content/developer/api/iap.rst:292
 msgid ""
@@ -2251,14 +2285,17 @@ msgid ""
 ":class:`odoo.exceptions.AccessError` and "
 ":class:`odoo.exceptions.UserError`)."
 msgstr ""
+"对于进入服务或者在app和我们的服务之间的通信协议,没有特殊的要求,但 ``iap`` "
+"提供了一个 :func:`~odoo.addons.iap.tools.iap_tools.iap_jsonrpc` 来调用"
+"其他Odoo实例的JSON-RPC2_ 端点,并透明地重新提出相关的 Odoo 异常."
 
 #: ../../content/developer/api/iap.rst:299
 msgid "In that call, we will need to provide:"
-msgstr ""
+msgstr "在调用中,我们需要提供:"
 
 #: ../../content/developer/api/iap.rst:301
 msgid "any relevant client parameter (none here),"
-msgstr ""
+msgstr "任意相关的客户端参数(这里没有),"
 
 #: ../../content/developer/api/iap.rst:302
 msgid ""
@@ -2268,6 +2305,9 @@ msgid ""
 ":samp:`env['iap.account'].get({service_name})` where :class:`service_name"
 " <ServiceName>` is the name of the service registered on IAP endpoint."
 msgstr ""
+"当前客户的 :class:`token <UserToken>` 是通过 ``iap.account`` 模型中的 ``account_token`` 提供的."
+"你可以通过调用 :samp:`env['iap.account'].get({service_name})` 重新查找服务的帐号."
+"这里的 :class:`service_name <ServiceName>` 是指在IAP端点中注册的服务名称."
 
 #: ../../content/developer/api/iap.rst:308
 msgid "`coalroller/models/res_partner.py`"
@@ -2279,6 +2319,8 @@ msgid ""
 ":class:`~odoo.addons.iap.tools.iap_tools.InsufficientCreditError` coming "
 "from the action and prompts the user to add credits to their account."
 msgstr ""
+"``iap`` 会自动的处理来自action中 :class:`~odoo.addons.iap.tools.iap_tools.InsufficientCreditError` ,"
+"并提示用户向账户中添加credits."
 
 #: ../../content/developer/api/iap.rst:340
 msgid ""
@@ -2286,6 +2328,8 @@ msgid ""
 "raising :class:`~odoo.addons.iap.models.iap.InsufficientCreditError` for "
 "you."
 msgstr ""
+":func:`~odoo.addons.iap.tools.iap_tools.iap_jsonrpc` 用来为你处理"
+" :class:`~odoo.addons.iap.models.iap.InsufficientCreditError` 错误."
 
 #: ../../content/developer/api/iap.rst:345
 msgid ""
@@ -2295,11 +2339,14 @@ msgid ""
 " handler otherwise the user will not be prompted to credit their account,"
 " and the next call will fail the same way."
 msgstr ""
+"如果你没有使用 :func:`~odoo.addons.iap.tools.iap_tools.iap_jsonrpc` ,那么你 *必须* 小心的"
+"重新提出 :class:`~odoo.addons.iap.tools.iap_tools.InsufficientCreditError` 类,否则用户不会"
+"得到提示充值的提示,下次也会因相同的原因失败."
 
 #: ../../content/developer/api/iap.rst:354
 #: ../../content/developer/reference/frontend/javascript_reference.rst:887
 msgid "Service"
-msgstr ""
+msgstr "Service"
 
 #: ../../content/developer/api/iap.rst:356
 msgid ""
@@ -2310,6 +2357,9 @@ msgid ""
 "(:class:`~odoo.addons.iap.tools.iap_tools.iap_charge`) we will also be "
 "implementing the service side as an Odoo module:"
 msgstr ""
+"虽然不是 *必需* 的, ``iap`` 同时提供了 JSON-RPC3_ 的客户帮助调用 (:func:`~odoo.addons.iap.tools.iap_tools.iap_jsonrpc`),"
+"和交易的服务调用(:class:`~odoo.addons.iap.tools.iap_tools.iap_charge`)."
+"我们将来也会通过Odoo模块在服务端实现."
 
 #: ../../content/developer/api/iap.rst:361
 #: ../../content/developer/api/iap.rst:451
@@ -2323,6 +2373,8 @@ msgid ""
 ":class:`~odoo.addons.iap.tools.iap_tools.iap_charge` and perform the "
 "service within:"
 msgstr ""
+"由于客户端是通过 JSON-RPC2_ 查询的,我们需要相应的controller,用它来调用"
+" :class:`~odoo.addons.iap.tools.iap_tools.iap_charge` 类,通过以下方式执行服务:"
 
 #: ../../content/developer/api/iap.rst:375
 #: ../../content/developer/api/iap.rst:464
