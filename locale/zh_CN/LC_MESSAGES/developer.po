@@ -2385,7 +2385,7 @@ msgstr ""
 msgid ""
 "for the actual IAP will the \"portal\" page be on odoo.com or "
 "iap.odoo.com?"
-msgstr ""
+msgstr "对于实际的IAP,\"门户\" 页面会位于 odoo.com 或 iap.odoo.com?"
 
 #: ../../content/developer/api/iap.rst:411
 msgid "\"My Account\" > \"Your InApp Services\"?"
@@ -2393,7 +2393,7 @@ msgstr ""
 
 #: ../../content/developer/api/iap.rst:414
 msgid "The :class:`~odoo.addons.iap.tools.iap_tools.iap_charge` helper will:"
-msgstr ""
+msgstr ":class:`~odoo.addons.iap.tools.iap_tools.iap_charge` helper 会:"
 
 #: ../../content/developer/api/iap.rst:416
 msgid ""
@@ -2401,26 +2401,29 @@ msgid ""
 " the account does not have enough credits it will raise the relevant "
 "error"
 msgstr ""
+"授权(创建)一个特定数目credits的交易,如果账户没有足够的credits,会触发相关的错误."
 
 #: ../../content/developer/api/iap.rst:419
 msgid "execute the body of the ``with`` statement"
-msgstr ""
+msgstr "执行 ``with`` 语句的主体"
 
 #: ../../content/developer/api/iap.rst:420
 msgid ""
 "if the body of the ``with`` executes successfully, update the price of "
 "the transaction if needed"
 msgstr ""
+"如果 ``with`` 主体执行成功,如有必要更新交易的价格."
 
 #: ../../content/developer/api/iap.rst:422
 msgid "capture (confirm) the transaction"
-msgstr ""
+msgstr "捕获(确认)交易"
 
 #: ../../content/developer/api/iap.rst:423
 msgid ""
 "otherwise, if an error is raised from the body of the ``with``, cancel "
 "the transaction (and release the hold on the credits)"
 msgstr ""
+"否则,如果 ``with`` 主体发生了错误,取消交易(并释放相关credits)"
 
 #: ../../content/developer/api/iap.rst:428
 msgid ""
@@ -2429,6 +2432,9 @@ msgid ""
 "and testing your service you may want to point it towards the "
 "*development* IAP endpoint https://iap-sandbox.odoo.com."
 msgstr ""
+"默认情况下, :class:`~odoo.addons.iap.tools.iap_tools.iap_charge` 与 *生产* "
+"IAP节点,https://iap.odoo.com, 相关连.当开发和测试你的服务时,你会将它指向"
+" *开发* IAP节点 https://iap-sandbox.odoo.com."
 
 #: ../../content/developer/api/iap.rst:433
 msgid ""
@@ -2437,6 +2443,9 @@ msgid ""
 "Parameters --> System Parameters`, just define an entry for the key "
 "``iap.endpoint`` if none already exists)."
 msgstr ""
+"要达到此目的,在你的服务 Odoo:在debug/developer模式下,:menuselection:`Setting --> Technical --> "
+"Parameters --> System Parameters`中设置 ``iap.endpoint`` 配置参数."
+"如果不存在,只需为键 ``iap.endpoint`` 添加一个值."
 
 #: ../../content/developer/api/iap.rst:438
 msgid ""
@@ -2444,6 +2453,8 @@ msgid ""
 "additional optional parameters we can use to make things clearer to the "
 "end-user."
 msgstr ""
+":class:`~odoo.addons.iap.tools.iap_tools.iap_charge` 帮助类拥有额外的两个可选参数,"
+"可以使终端用户更清晰的了解它们的消费情况."
 
 #: ../../content/developer/api/iap.rst:443
 #: ../../content/developer/reference/backend/reports.rst:197
@@ -2456,6 +2467,7 @@ msgid ""
 "displayed in the user's dashboard, it is useful to remind the user why "
 "the charge exists."
 msgstr ""
+"是一消息,它会与交易关联并展示在用户的仪表盘上,它用来展示给用户交易来自何方."
 
 #: ../../content/developer/api/iap.rst:449
 msgid "``credit_template``"
@@ -2468,6 +2480,8 @@ msgid ""
 " service provider is requesting, its purpose is to tell your users why "
 "they should be interested in your IAP offers."
 msgstr ""
+"是一个 :ref:`reference/qweb` 模板,会被渲染和向用户展示--如果用户的可用credits少于"
+"服务提供者标明的.它的目的是告诉你的用户为什么他们应该使用你的IAP功能."
 
 #: ../../content/developer/api/iap.rst:491
 msgid "`coalroller_service/views/no-credit.xml`"
@@ -2475,7 +2489,7 @@ msgstr ""
 
 #: ../../content/developer/api/iap.rst:514
 msgid "how do you test your service?"
-msgstr ""
+msgstr "怎样测试你的服务?"
 
 #: ../../content/developer/api/iap.rst:517
 msgid "JSON-RPC2_ Transaction API"
@@ -2486,39 +2500,44 @@ msgid ""
 "The IAP transaction API does not require using Odoo when implementing "
 "your server gateway, calls are standard JSON-RPC2_."
 msgstr ""
+"在实现服务网关时,IAP交易API并不要求使用Odoo,调用都是标准的JSON-RPC2_."
 
 #: ../../content/developer/api/iap.rst:524
 msgid ""
 "Calls use different *endpoints* but the same *method* on all endpoints "
 "(``call``)."
 msgstr ""
+"调用使用不同的 *节点* ,但在所有的节点(``调用``)上使用相同的 *方法* ."
 
 #: ../../content/developer/api/iap.rst:526
 msgid ""
 "Exceptions are returned as JSON-RPC2_ errors, the formal exception name "
 "is available on ``data.name`` for programmatic manipulation."
 msgstr ""
+"异常作为 JSON-RPC2_ 错误返回,对于编程操作,格式化的异常名称在 `data.name` 上是可用的."
 
 #: ../../content/developer/api/iap.rst:529
 msgid "`iap.odoo.com documentation`_ for additional information."
-msgstr ""
+msgstr "`iap.odoo.com documentation`_ 的额外信息."
 
 #: ../../content/developer/api/iap.rst:532
 #: ../../content/developer/api/iap.rst:778
 msgid "Authorize"
-msgstr ""
+msgstr "认证"
 
 #: ../../content/developer/api/iap.rst:536
 msgid ""
 "Verifies that the user's account has at least as ``credit`` available "
 "*and creates a hold (pending transaction) on that amount*."
 msgstr ""
+"验证用户账户至少可用 ``credit`` 并占用此数量(当前交易)."
 
 #: ../../content/developer/api/iap.rst:539
 msgid ""
 "Any amount currently on hold by a pending transaction is considered "
 "unavailable to further authorize calls."
 msgstr ""
+"被当前交易占用的数量,对于接下来的认证调用是不可用的."
 
 #: ../../content/developer/api/iap.rst:542
 msgid ""
@@ -2526,6 +2545,8 @@ msgid ""
 "which can be used to capture (confirm) or cancel said transaction "
 "(`iap.odoo.com documentation`_)."
 msgstr ""
+"返回一个 :class:`TransctionToken` 标识了当前交易,被用来捕获(确认)或取消上述交易"
+" (`iap.odoo.com documentation`_)."
 
 #: ../../content/developer/api/iap.rst
 #: ../../content/developer/reference/backend/mixins.rst
@@ -2590,17 +2611,18 @@ msgstr ""
 #: odoo.tools.populate.randomize odoo.tools.profiler.PeriodicCollector
 #: odoo.tools.profiler.Profiler.__init__ of
 msgid "Parameters"
-msgstr ""
+msgstr "参数"
 
 #: ../../content/developer/api/iap.rst:548
 msgid "optional, helps users identify the reason for charges on their account"
-msgstr ""
+msgstr "可选的,协助用户描述他们账户上的交易的原因."
 
 #: ../../content/developer/api/iap.rst:550
 msgid ""
 "optional, allows the user to benefit from trial credits if his database "
 "is eligible (see :ref:`Service registration <register-service>`)"
 msgstr ""
+"可选的,如果数据库符合要求,允许用户从 trial credits中受益(see :ref:`Service registration <register-service>`)"
 
 #: ../../content/developer/api/iap.rst:552
 msgid ""
@@ -2608,6 +2630,8 @@ msgid ""
 "captured when the transaction expires, the transaction is cancelled. The "
 "default value is set to 4320 hours (= 180 days)."
 msgstr ""
+"可选的,以小时为单位的交易时间.如果交易超过期限后,未获得credit,那么说明交易已取消."
+"默认值为4320小时(=180天)."
 
 #: ../../content/developer/api/iap.rst
 #: ../../content/developer/reference/backend/mixins.rst
